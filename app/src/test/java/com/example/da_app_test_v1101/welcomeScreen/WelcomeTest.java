@@ -21,14 +21,21 @@ package com.example.da_app_test_v1101.welcomeScreen;
  *
  * <p>
  * TEST CASES:
+ * TC020: Redirecting to children screen
+ * TC021: Redirecting to settings screen
+ * TC022: Provide access to Fitbit
+ * TC023: Do not currently use Fitbit
+ * TC024: Icons and images visibility
  *
- */
+ **/
 
 import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -81,6 +88,45 @@ public class WelcomeTest {
                 {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
                 {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD}
         });
+    }
+
+    private void welcomeScreen() {
+
+    }
+
+    @Test
+    /* TC020 */
+    public void childrenButton() {
+
+    }
+
+    @Test
+    /* TC021 */
+    public void settingsButtons() {
+
+    }
+
+    @Test
+    /* TC022 */
+    public void provideAccess() {
+
+    }
+
+    @Test
+    /* TC023 */
+    public void denyAccess() {
+
+    }
+
+    @Test
+    /* TC024 */
+    public void iconAndImageVisibility() {
+
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
     }
 
 }
