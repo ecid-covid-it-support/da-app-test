@@ -36,7 +36,6 @@ package com.example.da_app_test_v1101.ChildrenScreen;
  * TC017: There is no data
  * TC018: Redirecting activities, sleep, weight and heart rate screen
  * TC019: Redirects to the correct data
- *
  */
 
 import com.example.da_app_test_v1101.BuildConfig;
@@ -174,12 +173,6 @@ public class ChildrenTest {
     }
 
     @Test
-    /* TC013 */
-    public void desabilitatedFitbit() {
-
-    }
-
-    @Test
     /* TC014 */
     public void sortUsername() {
 
@@ -193,8 +186,17 @@ public class ChildrenTest {
 
     @Test
     /* TC016 */
-    public void searchButton() {
-
+    public void searchButton() throws InterruptedException {
+        childrenScreen();
+        /* Click the search button */
+        driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_button").click();
+        Thread.sleep(2000);
+        /* In the search field enter the child's name */
+        driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_src_text").sendKeys("BR001");
+        Thread.sleep(2000);
+        /* Make sure the first child on the list is the correct zero */
+        List<MobileElement> children = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/name_child"));
+        Assert.assertEquals("BR001", children.get(0).getText());
     }
 
     @Test
