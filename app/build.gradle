@@ -23,6 +23,8 @@ android {
             buildConfigField "String", "CI_USERNAME_HP", "\"$CI_USERNAME_HP\""
             buildConfigField "String", "CI_USERNAME_FM", "\"$CI_USERNAME_FM\""
             buildConfigField "String", "CI_PASSWORD", "\"$CI_PASSWORD\""
+            buildConfigField "String", "FITBIT_USERNAME", "\"$FITBIT_USERNAME\""
+            buildConfigField "String", "FITBIT_PASSWORD", "\"$FITBIT_PASSWORD\""
         }
         release {
             minifyEnabled false

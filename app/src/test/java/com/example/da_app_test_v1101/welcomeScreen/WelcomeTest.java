@@ -33,6 +33,8 @@ package com.example.da_app_test_v1101.welcomeScreen;
  * TC029: Redirecting to the Fitbit login page
  * TC030: Do not currently use Fitbit
  * TC031: Icons and images visibility
+ *
+ *
  **/
 
 import com.example.da_app_test_v1101.BuildConfig;
@@ -114,18 +116,60 @@ public class WelcomeTest {
 
     @Test
     /* TC022 */
-    public void provideAccess() {
+    public void provideAccess_validLogin() {
 
     }
 
     @Test
     /* TC023 */
-    public void denyAccess() {
+    public void provideAccess_invalidLogin() {
 
     }
 
     @Test
     /* TC024 */
+    public void allowAll() {
+
+    }
+
+    @Test
+    /* TC025 */
+    public void allowActivityAndExercise() {
+
+    }
+
+    @Test
+    /* TC026 */
+    public void allowSleep() {
+
+    }
+
+    @Test
+    /* TC027 */
+    public void allowHeartRate() {
+
+    }
+
+    @Test
+    /* TC028 */
+    public void allowWeight() {
+
+    }
+
+    @Test
+    /* TC029 */
+    public void fitbitLoginPage() {
+
+    }
+
+    @Test
+    /* TC030 */
+    public void doNotCurrentlyUseFitbit() {
+
+    }
+
+    @Test
+    /* TC031 */
     public void iconAndImageVisibility() {
 
     }
