@@ -25,7 +25,14 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class User {
 
-    public void login(AndroidDriver driver, String username, String password) {
+    private String validUsername;
+    private String validPassword;
+    private String invalidUsername;
+    private String invalidPassword;
+    private String caseInsensitiveUsername;
+    private String caseInsensitivePassword;
+
+    public static void login(AndroidDriver driver, String username, String password) {
         /* username */
         driver.findElementById("br.edu.uepb.nutes.ocariot:id/username").sendKeys(username);
         /* password */
