@@ -23,10 +23,16 @@ package com.example.da_app_test_v1101.welcomeScreen;
  * TEST CASES:
  * TC020: Redirecting to children screen
  * TC021: Redirecting to settings screen
- * TC022: Provide access to Fitbit
- * TC023: Do not currently use Fitbit
- * TC024: Icons and images visibility
- *
+ * TC022: Valid login Fitbit
+ * TC023: Invalid login Fitbit
+ * TC024: Allow all
+ * TC025: Allow activity and exercise
+ * TC026: Allow sleep
+ * TC027: Allow heart rate
+ * TC028: Aloow weight
+ * TC029: Redirecting to the Fitbit login page
+ * TC030: Do not currently use Fitbit
+ * TC031: Icons and images visibility
  **/
 
 import com.example.da_app_test_v1101.BuildConfig;
