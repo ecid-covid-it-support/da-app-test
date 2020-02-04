@@ -1,0 +1,11 @@
+USERNAME_ED=user.app
+USERNAME_HP=user.app
+USERNAME_FM=user.app
+
+PASSWORD=user.app
+
+CI_USERNAME_ED=user.app
+CI_USERNAME_HP=user.app
+CI_USERNAME_FM=user.app
+
+CI_PASSWORD=user.app
