@@ -1,4 +1,4 @@
-package com.example.da_app_test_v1101.ChildrenScreen;
+package com.example.da_app_test_v1101.childrenScreen;
 
 /**
  * OCARIoT DATA ACQUISITION APP
@@ -7,24 +7,22 @@ package com.example.da_app_test_v1101.ChildrenScreen;
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
  * https://www.ocariot.com.br/
- *
  * <p>
  * Tester: DIEGO MUNIZ
  * Graduanting Computer Science, UEPB.
- *
  * <p>
  * Screen: Children
  * id screen: SC2
- *
  * <p>
  * List ID:
- * search button: br.edu.uepb.nutes.ocariot:id/search_button
+ * name child: br.edu.uepb.nutes.ocariot:id/name_child
+ * toolbar: br.edu.uepb.nutes.ocariot:id/toolbar
  * action sort: br.edu.uepb.nutes.ocariot:id/action_sort
  * gender: br.edu.uepb.nutes.ocariot:id/gender_img
  * Fitbit status: br.edu.uepb.nutes.ocariot:id/fitbit_status_cb
- * <p>
  * children list: br.edu.uepb.nutes.ocariot:id/children_list
- *
+ * search button: br.edu.uepb.nutes.ocariot:id/search_button
+ * search field: br.edu.uepb.nutes.ocariot:id/search_src_text
  * <p>
  * TEST CASES:
  * TC011: Icon and images visibility
