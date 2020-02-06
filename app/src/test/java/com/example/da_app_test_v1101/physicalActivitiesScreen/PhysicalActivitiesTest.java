@@ -11,8 +11,8 @@ package com.example.da_app_test_v1101.physicalActivitiesScreen;
  * Tester: DIEGO MUNIZ
  * Graduanting Computer Science, UEPB.
  * <p>
- * Screen: Welcome
- * id screen: SC3
+ * Screen: Physical Activities
+ * id screen: SC4
  * <p>
  * List ID:
  * list activities: br.edu.uepb.nutes.ocariot:id/activities_list
@@ -47,7 +47,7 @@ package com.example.da_app_test_v1101.physicalActivitiesScreen;
  *
  * <p>
  * TEST CASES:
- * TC032: Checks wheter the activity list data matches the details
+ * TC032: Checks whether the activity list data matches the details
  * TC033: Verify if data is greater than zero
  * TC034: levels bar is visible
  * TC035: levels bar is greater than zero
@@ -159,7 +159,12 @@ public class PhysicalActivitiesTest {
         isgreaterThanZero(duration_list.getText());
         isgreaterThanZero(calories_list.getText());
         isgreaterThanZero(distance_list.getText());
+    }
 
+    @Test
+    /* TC033 */
+    public void greaterThanZero() throws InterruptedException {
+        activityScreen();
         /* Activities list */
         MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
         /* List activities */
@@ -169,32 +174,34 @@ public class PhysicalActivitiesTest {
 
         Thread.sleep(2000);
 
-        stringForNumber("br.edu.uepb.nutes.ocariot:id/activity_duration_tv");
-
         isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_steps_tv").getAttribute("text"));
         isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_tv").getAttribute("text"));
         isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_distance_tv").getAttribute("text"));
         isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_min_tv").getAttribute("text"));
-
-
-    }
-
-    @Test
-    /* TC033 */
-    public void greaterThanZero() {
-
     }
 
     @Test
     /* TC034 */
-    public void levelsBarVisible() {
-
+    public void levelsBarVisible() throws InterruptedException {
+        activityScreen();
+        /* Activities list */
+        MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
+        /* List activities */
+        List<MobileElement> activities = activities_list.findElements(By.className("android.widget.RelativeLayout"));
+        /* click fist activity */
+        activities.get(0).click();
     }
 
     @Test
     /* TC035 */
-    public void levelsBarThanZero() {
-
+    public void levelsBarThanZero() throws InterruptedException {
+        activityScreen();
+        /* Activities list */
+        MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
+        /* List activities */
+        List<MobileElement> activities = activities_list.findElements(By.className("android.widget.RelativeLayout"));
+        /* click fist activity */
+        activities.get(0).click();
     }
 
     @Test
@@ -211,8 +218,13 @@ public class PhysicalActivitiesTest {
 
     @Test
     /* TC038 */
-    public void iconList() {
-
+    public void iconList() throws InterruptedException {
+        activityScreen();
+        MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
+        List<MobileElement> img_activity = activities_list.findElements(By.id("br.edu.uepb.nutes.ocariot:id/activity_img"));
+        for (MobileElement mobileElement : img_activity) {
+            Assert.assertTrue(mobileElement.isDisplayed());
+        }
     }
 
     @After

@@ -122,15 +122,13 @@ public class ChildrenTest {
         Assert.assertTrue(driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_sort").isDisplayed());
         /* gender icon */
         List<MobileElement> gender = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/gender_img"));
-        Iterator<MobileElement> gender_child = gender.iterator();
-        while (gender_child.hasNext()) {
-            Assert.assertTrue(gender_child.next().isDisplayed());
+        for (MobileElement element : gender) {
+            Assert.assertTrue(element.isDisplayed());
         }
         /* Fitbit status */
         List<MobileElement> status = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/fitbit_status_cb"));
-        Iterator<MobileElement> fitbit_status = status.iterator();
-        while (fitbit_status.hasNext()) {
-            Assert.assertTrue(fitbit_status.next().isDisplayed());
+        for (MobileElement mobileElement : status) {
+            Assert.assertTrue(mobileElement.isDisplayed());
         }
     }
 
