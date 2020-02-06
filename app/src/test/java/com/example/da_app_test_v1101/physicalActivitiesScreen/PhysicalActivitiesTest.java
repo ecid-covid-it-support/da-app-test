@@ -1,4 +1,4 @@
-package com.example.da_app_test_v1101.welcomeScreen;
+package com.example.da_app_test_v1101.physicalActivitiesScreen;
 
 /**
  * OCARIoT DATA ACQUISITION APP
@@ -7,15 +7,12 @@ package com.example.da_app_test_v1101.welcomeScreen;
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
  * https://www.ocariot.com.br/
- *
  * <p>
  * Tester: DIEGO MUNIZ
  * Graduanting Computer Science, UEPB.
- *
  * <p>
  * Screen: Welcome
  * id screen: SC3
- *
  * <p>
  * List ID:
  * children button: br.edu.uepb.nutes.ocariot:id/action_child
@@ -26,18 +23,13 @@ package com.example.da_app_test_v1101.welcomeScreen;
  * action bar: br.edu.uepb.nutes.ocariot:id/action_bar
  * <p>
  * TEST CASES:
- * TC020: Redirecting to children screen
- * TC021: Redirecting to settings screen
- * TC022: Valid login Fitbit
- * TC023: Invalid login Fitbit
- * TC024: Allow all
- * TC025: Allow activity and exercise
- * TC026: Allow sleep
- * TC027: Allow heart rate
- * TC028: Allow weight
- * TC029: Redirecting to the Fitbit login page
- * TC030: Do not currently use Fitbit
- * TC031: Icons and images visibility
+ * TC032: Checks wheter the activity list data matches the details
+ * TC033: Verify if data is greater than zero
+ * TC034: levels bar is visible
+ * TC035: levels bar is greater than zero
+ * TC036: There is no data
+ * TC037: Icons details activities visibility
+ * TC038: Icons activities list visibility
  **/
 
 import com.example.da_app_test_v1101.BuildConfig;
@@ -45,7 +37,6 @@ import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,10 +52,9 @@ import java.util.List;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import okhttp3.MultipartBody;
 
 @RunWith(Parameterized.class)
-public class WelcomeTest {
+public class PhysicalActivitiesTest {
 
     private AndroidDriver driver;
     private DesiredCapabilities dc = new DesiredCapabilities();
@@ -81,7 +71,7 @@ public class WelcomeTest {
 
     User user;
 
-    public WelcomeTest(
+    public PhysicalActivitiesTest(
             String validUsername,
             String validPassword
     ) {
@@ -101,12 +91,13 @@ public class WelcomeTest {
                     1° valid username,
                     2° valid password
                   }*/
-                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD, BuildConfig.FITBIT_USERNAME, BuildConfig.FITBIT_PASSWORD},
-                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD, BuildConfig.FITBIT_USERNAME, BuildConfig.FITBIT_PASSWORD}
+                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
+                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}
         });
     }
 
-    private void welcomeScreen() throws InterruptedException {
+    private void activityScreen() throws InterruptedException {
         User.login(driver, this.validUsername, this.validPassword);
         Thread.sleep(7000);
         /* Children list */
@@ -114,89 +105,49 @@ public class WelcomeTest {
         /* List children */
         List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
         /* List status Fitbit */
-        children.get(1).click();
+        children.get(0).click();
         Thread.sleep(2000);
     }
 
     @Test
-    /* TC020 */
-    public void childrenButton() throws InterruptedException {
-        welcomeScreen();
-        MobileElement children_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_child");
-        children_button.click();
-        Thread.sleep(2000);
-        MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
-        Assert.assertEquals("Children", toolbar.findElement(By.className("android.widget.TextView")).getText());
-    }
-
-    @Test
-    /* TC021 */
-    public void settingsButtons() throws InterruptedException {
-        welcomeScreen();
-        MobileElement settings_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_settings");
-        settings_button.click();
-        Thread.sleep(4000);
-        MobileElement action_bar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_bar");
-        Assert.assertEquals("Settings", action_bar.findElements(By.className("android.widget.TextView")).get(0).getText());
-    }
-
-    @Test
-    /* TC022 */
-    public void provideAccess_validLogin() {
+    /* TC032 */
+    public void dataList() {
 
     }
 
     @Test
-    /* TC023 */
-    public void provideAccess_invalidLogin() {
+    /* TC033 */
+    public void greaterThanZero() {
 
     }
 
     @Test
-    /* TC024 */
-    public void allowAll() {
+    /* TC034 */
+    public void levelsBarVisible() {
 
     }
 
     @Test
-    /* TC025 */
-    public void allowActivityAndExercise() {
+    /* TC035 */
+    public void levelsBarThanZero() {
 
     }
 
     @Test
-    /* TC026 */
-    public void allowSleep() {
+    /* TC036 */
+    public void thereIsNoData() {
 
     }
 
     @Test
-    /* TC027 */
-    public void allowHeartRate() {
+    /* TC037 */
+    public void iconDetailsVisibility() {
 
     }
 
     @Test
-    /* TC028 */
-    public void allowWeight() {
-
-    }
-
-    @Test
-    /* TC029 */
-    public void fitbitLoginPage() {
-
-    }
-
-    @Test
-    /* TC030 */
-    public void doNotCurrentlyUseFitbit() {
-
-    }
-
-    @Test
-    /* TC031 */
-    public void iconAndImageVisibility() {
+    /* TC038 */
+    public void iconList() {
 
     }
 
