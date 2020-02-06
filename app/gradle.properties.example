@@ -9,3 +9,6 @@ CI_USERNAME_HP=user.app
 CI_USERNAME_FM=user.app
 
 CI_PASSWORD=user.app
+
+FITBIT_USERNAME=user.app
+FITBIT_PASSWORD=user.app
