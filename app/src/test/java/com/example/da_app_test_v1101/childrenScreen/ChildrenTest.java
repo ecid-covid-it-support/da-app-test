@@ -197,14 +197,26 @@ public class ChildrenTest {
 
     @Test
     /* TC017 */
-    public void noData() {
+    public void noData() throws InterruptedException {
+        User.login(driver, "EDBR01", BuildConfig.PASSWORD);
+        /* br.edu.uepb.nutes.ocariot:id/box_no_data */
+        /* br.edu.uepb.nutes.ocariot:id/logout_button */
+        Thread.sleep(4000);
 
+        MobileElement box_no_data = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/box_no_data");
+        Assert.assertTrue(box_no_data.isDisplayed());
+
+        MobileElement logout_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/logout_button");
+        logout_button.click();
+
+        MobileElement confirm_logout = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot.android:id/button1");
+        confirm_logout.click();
     }
 
-    @After
+    /*@After
     public void tearDown() {
         driver.quit();
-    }
+    }*/
 
 
 }

@@ -44,6 +44,8 @@ package com.example.da_app_test_v1101.physicalActivitiesScreen;
  * br.edu.uepb.nutes.ocariot:id/lightly_Level_value_tv
  * br.edu.uepb.nutes.ocariot:id/fairly_Level_value_tv
  * br.edu.uepb.nutes.ocariot:id/very_Level_value_tv
+ * <p>
+ * do not use fitbit button: br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button
  *
  * <p>
  * TEST CASES:
@@ -60,7 +62,6 @@ import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -206,8 +207,24 @@ public class PhysicalActivitiesTest {
 
     @Test
     /* TC036 */
-    public void thereIsNoData() {
-
+    public void thereIsNoData() throws InterruptedException {
+        /* Valid login */
+        User.login(driver, this.validUsername, this.validPassword);
+        Thread.sleep(3000);
+        /* Child list */
+        MobileElement child_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
+        List<MobileElement> list_child = child_list.findElements(By.className("android.widget.RelativeLayout"));
+        list_child.get(1).click();
+        Thread.sleep(2000);
+        /* br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button */
+        if (this.validUsername.equals(BuildConfig.USERNAME_ED) || this.validUsername.equals(BuildConfig.USERNAME_HP)) {
+            /* Do not use Fitbit */
+            driver.findElementById("br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button").click();
+        }
+        Thread.sleep(2000);
+        /* Redirect to physical activity screen */
+        MobileElement box_no_data = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/box_no_data");
+        Assert.assertTrue(box_no_data.isDisplayed());
     }
 
     @Test
@@ -227,9 +244,9 @@ public class PhysicalActivitiesTest {
         }
     }
 
-    @After
+    /*@After
     public void tearDown() {
         driver.quit();
-    }
+    }*/
 
 }
