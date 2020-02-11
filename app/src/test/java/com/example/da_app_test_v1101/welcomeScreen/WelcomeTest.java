@@ -114,7 +114,7 @@ public class WelcomeTest {
         /* List children */
         List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
         /* List status Fitbit */
-        children.get(1).click();
+        children.get(2).click();
         Thread.sleep(2000);
     }
 
@@ -142,7 +142,12 @@ public class WelcomeTest {
 
     @Test
     /* TC022 */
-    public void provideAccess_validLogin() {
+    public void provideAccess_validLogin() throws InterruptedException {
+        welcomeScreen();
+        /* click provide Fitbit */
+        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
+        provide_fitbit.click();
+        /* Redirect Fitbit account*/
 
     }
 
@@ -190,8 +195,14 @@ public class WelcomeTest {
 
     @Test
     /* TC030 */
-    public void doNotCurrentlyUseFitbit() {
-
+    public void doNotCurrentlyUseFitbit() throws InterruptedException {
+        welcomeScreen();
+        /* Do not user Fitbit */
+        MobileElement do_not_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button");
+        do_not_fitbit.click();
+        /* checks whether you have been redirected to the physical activity screen  */
+        MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
+        Assert.assertEquals("Physical activities", toolbar.findElements(By.className("android.widget.TextView")).get(0).getText());
     }
 
     @Test

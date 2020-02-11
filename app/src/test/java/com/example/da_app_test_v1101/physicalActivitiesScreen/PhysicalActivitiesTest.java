@@ -229,8 +229,16 @@ public class PhysicalActivitiesTest {
 
     @Test
     /* TC037 */
-    public void iconDetailsVisibility() {
+    public void iconDetailsVisibility() throws InterruptedException {
+        activityScreen();
+        Thread.sleep(2000);
+        MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
+        List<MobileElement> list_children = children_list.findElements(By.className("android.widget.RelativeLayout"));
+        list_children.get(0).click();
 
+        MobileElement activity_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
+        List<MobileElement> list_activity = activity_list.findElements(By.className("android.widget.RelativeLayout"));
+        list_activity.get(0).click();
     }
 
     @Test
