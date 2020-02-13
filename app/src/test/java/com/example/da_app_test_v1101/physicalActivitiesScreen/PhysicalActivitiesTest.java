@@ -235,12 +235,6 @@ public class PhysicalActivitiesTest {
     @Test
     /* TC035 */
     public void levelsBarThanOrEqualsZero() throws InterruptedException {
-        /**
-         br.edu.uepb.nutes.ocariot:id/sedentary_Level_value_tv
-         * br.edu.uepb.nutes.ocariot:id/lightly_Level_value_tv
-         * br.edu.uepb.nutes.ocariot:id/fairly_Level_value_tv
-         * br.edu.uepb.nutes.ocariot:id/very_Level_value_tv
-         */
         activityScreen();
         /* Activities list */
         MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
@@ -250,13 +244,11 @@ public class PhysicalActivitiesTest {
         activities.get(0).click();
         Thread.sleep(2000);
 
-
         /* Check if greater than or equals to zero */
         isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/sedentary_Level_value_tv"));
         isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/lightly_Level_value_tv"));
         isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/fairly_Level_value_tv"));
         isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/very_Level_value_tv"));
-
     }
 
     @Test

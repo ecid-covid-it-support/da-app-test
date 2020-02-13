@@ -26,6 +26,7 @@ import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
@@ -94,6 +95,11 @@ public class SleepTest {
         /* List status Fitbit */
         children.get(0).click();
         Thread.sleep(2000);
+    }
+
+    @Test
+    public void test() throws InterruptedException {
+        sleepScreen();
     }
 
 }

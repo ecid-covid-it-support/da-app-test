@@ -53,7 +53,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import io.appium.java_client.MobileElement;
@@ -112,6 +111,7 @@ public class ChildrenTest {
         Assert.assertEquals("Children", toolbar.findElement(By.className("android.widget.TextView")).getText());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     /* TC011 */
     public void iconAndimagesVisivility() throws InterruptedException {
@@ -132,6 +132,7 @@ public class ChildrenTest {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     /* TC012, TC013, TC018 and TC019 */
     public void habilitatedFitbit() throws InterruptedException {
@@ -146,8 +147,8 @@ public class ChildrenTest {
         List<MobileElement> name_child = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/name_child"));
         String nameChild = name_child.get(0).getText();
 
+        /* checks whether you are being redirected to the correct screen */
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
-            /* */
             children.get(0).click();
             Thread.sleep(2000);
             MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
@@ -207,10 +208,10 @@ public class ChildrenTest {
         Assert.assertTrue(box_no_data.isDisplayed());
     }
 
-    /*@After
+    @After
     public void tearDown() {
         driver.quit();
-    }*/
+    }
 
 
 }
