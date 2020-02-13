@@ -5,6 +5,7 @@ import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -79,4 +80,28 @@ public class MenuTest {
         });
     }
 
+
+    @Test
+    /* TC065 */
+    public void childrenScreen() {
+
+    }
+
+    @Test
+    /* TC066 */
+    public void settingsScreen() {
+
+    }
+
+    @Test
+    /* TC067 */
+    public void correctScreen() {
+
+    }
+
+    @Test
+    /* TC068 */
+    public void showsButtons() {
+
+    }
 }
