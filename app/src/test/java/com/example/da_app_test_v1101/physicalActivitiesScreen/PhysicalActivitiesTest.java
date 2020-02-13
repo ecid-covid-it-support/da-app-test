@@ -129,7 +129,7 @@ public class PhysicalActivitiesTest {
         return text.getText().replaceAll("[\\D]", "");
     }
 
-    private void isgreaterThanZero(String textElement) {
+    private void isgreaterThanOrEqualsZero(String textElement) {
         float number = Float.parseFloat(textElement);
         Assert.assertTrue(number >= 0);
     }
@@ -157,9 +157,9 @@ public class PhysicalActivitiesTest {
         List<MobileElement> calories_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/calories_tv"));
         List<MobileElement> distance_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/distance_tv"));
         /* data list greater than zero */
-        isgreaterThanZero(duration_list.get(0).getText());
-        isgreaterThanZero(calories_list.get(0).getText());
-        isgreaterThanZero(distance_list.get(0).getText());
+        isgreaterThanOrEqualsZero(duration_list.get(0).getText());
+        isgreaterThanOrEqualsZero(calories_list.get(0).getText());
+        isgreaterThanOrEqualsZero(distance_list.get(0).getText());
 
         /* Saved to a string to use on the next screen */
         String duration = duration_list.get(0).getText();
@@ -191,15 +191,27 @@ public class PhysicalActivitiesTest {
 
         Thread.sleep(2000);
 
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_steps_tv").getText());
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_tv").getText());
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_distance_tv").getText());
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_min_tv").getText());
+        isgreaterThanOrEqualsZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_steps_tv").getText());
+        isgreaterThanOrEqualsZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_tv").getText());
+        isgreaterThanOrEqualsZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_distance_tv").getText());
+        isgreaterThanOrEqualsZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_min_tv").getText());
+    }
+
+    /* element.isDisplayerd() */
+    private void isVisible(String idElement) {
+        Assert.assertTrue(driver.findElementById(idElement).isDisplayed());
     }
 
     @Test
     /* TC034 */
     public void levelsBarVisible() throws InterruptedException {
+
+        /** levels bar:
+         * br.edu.uepb.nutes.ocariot:id/sedentary_Level_tv
+         * br.edu.uepb.nutes.ocariot:id/lightly_Level_tv
+         * br.edu.uepb.nutes.ocariot:id/fairly_Level_tv
+         * br.edu.uepb.nutes.ocariot:id/very_Level_tv
+         **/
         activityScreen();
         /* Activities list */
         MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
@@ -207,11 +219,28 @@ public class PhysicalActivitiesTest {
         List<MobileElement> activities = activities_list.findElements(By.className("android.widget.RelativeLayout"));
         /* click fist activity */
         activities.get(0).click();
+
+        Thread.sleep(2000);
+
+        isVisible("br.edu.uepb.nutes.ocariot:id/sedentary_Level_tv");
+        isVisible("br.edu.uepb.nutes.ocariot:id/lightly_Level_tv");
+        isVisible("br.edu.uepb.nutes.ocariot:id/fairly_Level_tv");
+        isVisible("br.edu.uepb.nutes.ocariot:id/very_Level_tv");
+
     }
+
+
+
 
     @Test
     /* TC035 */
-    public void levelsBarThanZero() throws InterruptedException {
+    public void levelsBarThanOrEqualsZero() throws InterruptedException {
+        /**
+         br.edu.uepb.nutes.ocariot:id/sedentary_Level_value_tv
+         * br.edu.uepb.nutes.ocariot:id/lightly_Level_value_tv
+         * br.edu.uepb.nutes.ocariot:id/fairly_Level_value_tv
+         * br.edu.uepb.nutes.ocariot:id/very_Level_value_tv
+         */
         activityScreen();
         /* Activities list */
         MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
@@ -219,6 +248,15 @@ public class PhysicalActivitiesTest {
         List<MobileElement> activities = activities_list.findElements(By.className("android.widget.RelativeLayout"));
         /* click fist activity */
         activities.get(0).click();
+        Thread.sleep(2000);
+
+
+        /* Check if greater than or equals to zero */
+        isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/sedentary_Level_value_tv"));
+        isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/lightly_Level_value_tv"));
+        isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/fairly_Level_value_tv"));
+        isgreaterThanOrEqualsZero(stringNumber("br.edu.uepb.nutes.ocariot:id/very_Level_value_tv"));
+
     }
 
     @Test
