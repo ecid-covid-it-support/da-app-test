@@ -166,6 +166,17 @@ public class MenuTest {
         Assert.assertEquals( "Physical activities", screen.get(0).getText());
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    /* TC068 */
+    public void iconsVisible() throws InterruptedException {
+        menuScreen();
+        List<MobileElement> icons = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/icon"));
+        for(MobileElement icon: icons) {
+            Assert.assertTrue(icon.isDisplayed());
+        }
+    }
+
     @After
     public void tearDown() {
         driver.quit();
