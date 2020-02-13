@@ -62,6 +62,7 @@ import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -123,11 +124,9 @@ public class PhysicalActivitiesTest {
         });
     }
 
-    private void stringForNumber(String idElement) {
+    private String stringNumber(String idElement) {
         MobileElement text = (MobileElement) driver.findElementById(idElement);
-        String nbr = text.getText().replaceAll("[\\D]", "");
-        float number = Float.parseFloat(nbr);
-        Assert.assertTrue(number >= 0);
+        return text.getText().replaceAll("[\\D]", "");
     }
 
     private void isgreaterThanZero(String textElement) {
@@ -148,18 +147,35 @@ public class PhysicalActivitiesTest {
     }
 
 
+    @SuppressWarnings("unchecked")
     @Test
     /* TC032 */
     public void dataList() throws InterruptedException {
         activityScreen();
-
-        MobileElement duration_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/duration_tv");
-        MobileElement calories_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/calories_tv");
-        MobileElement distance_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/distance_tv");
+        /* Takes data from the list of the first activity */
+        List<MobileElement> duration_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/duration_tv"));
+        List<MobileElement> calories_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/calories_tv"));
+        List<MobileElement> distance_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/distance_tv"));
         /* data list greater than zero */
-        isgreaterThanZero(duration_list.getText());
-        isgreaterThanZero(calories_list.getText());
-        isgreaterThanZero(distance_list.getText());
+        isgreaterThanZero(duration_list.get(0).getText());
+        isgreaterThanZero(calories_list.get(0).getText());
+        isgreaterThanZero(distance_list.get(0).getText());
+
+        /* Saved to a string to use on the next screen */
+        String duration = duration_list.get(0).getText();
+        String calories = calories_list.get(0).getText();
+        String distance = distance_list.get(0).getText();
+
+        /* Click on the first activity */
+        MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
+        List<MobileElement> list_activitites = activities_list.findElements(By.className("android.widget.RelativeLayout"));
+        list_activitites.get(0).click();
+
+        Thread.sleep(2000);
+        /* Checks whether the data in the list matches the details */
+        Assert.assertEquals(duration, stringNumber("br.edu.uepb.nutes.ocariot:id/activity_duration_tv"));
+        Assert.assertEquals(calories, stringNumber("br.edu.uepb.nutes.ocariot:id/activity_calories_tv"));
+        Assert.assertEquals(distance.replaceAll("[\\D]", ""), stringNumber("br.edu.uepb.nutes.ocariot:id/activity_distance_tv"));
     }
 
     @Test
@@ -175,10 +191,10 @@ public class PhysicalActivitiesTest {
 
         Thread.sleep(2000);
 
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_steps_tv").getAttribute("text"));
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_tv").getAttribute("text"));
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_distance_tv").getAttribute("text"));
-        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_min_tv").getAttribute("text"));
+        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_steps_tv").getText());
+        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_tv").getText());
+        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_distance_tv").getText());
+        isgreaterThanZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_min_tv").getText());
     }
 
     @Test
@@ -252,9 +268,9 @@ public class PhysicalActivitiesTest {
         }
     }
 
-    /*@After
+    @After
     public void tearDown() {
         driver.quit();
-    }*/
+    }
 
 }

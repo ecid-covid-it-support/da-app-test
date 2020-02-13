@@ -81,15 +81,21 @@ public class WelcomeTest {
 
     private String validUsername;
     private String validPassword;
+    private String fitbitUsername;
+    private String fitbitPassword;
 
     User user;
 
     public WelcomeTest(
             String validUsername,
-            String validPassword
+            String validPassword,
+            String fitbitUsername,
+            String fitbitPassword
     ) {
         this.validUsername = validUsername;
         this.validPassword = validPassword;
+        this.fitbitUsername = fitbitUsername;
+        this.fitbitPassword = fitbitPassword;
     }
 
     @Before

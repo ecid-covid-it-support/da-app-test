@@ -32,6 +32,11 @@ public class User {
     private String caseInsensitiveUsername;
     private String caseInsensitivePassword;
 
+    private String fitbitUsername;
+    private String fitbitPassword;
+
+
+
     public static void login(AndroidDriver driver, String username, String password) {
         /* username */
         driver.findElementById("br.edu.uepb.nutes.ocariot:id/username").sendKeys(username);
