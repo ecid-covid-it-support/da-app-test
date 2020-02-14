@@ -17,10 +17,12 @@ package com.example.da_app_test_v1101.sleepScreen;
  * List ID:
  * sleep list: br.edu.uepb.nutes.ocariot:id/sleep_list
  * efficiency list: br.edu.uepb.nutes.ocariot:id/sleep_efficiency_tv
- * <p>
  * sleep chat: br.edu.uepb.nutes.ocariot:id/sleep_chart
- *
- *
+ * <p>
+ * TEST CASES:
+ * TC039: Verify is sleep efficiency is greater than or equal zero
+ * TC040: The graph is visible
+ * TC041: There is no data
  **/
 
 import com.example.da_app_test_v1101.BuildConfig;
@@ -101,7 +103,20 @@ public class SleepTest {
     }
 
     @Test
-    public void test() throws InterruptedException {
+    /* TC039 */
+    public void isGreaterOrEqualZero() throws InterruptedException {
+        sleepScreen();
+    }
+
+    @Test
+    /* TC040 */
+    public void graph() throws InterruptedException {
+        sleepScreen();
+    }
+
+    @Test
+    /* TC041 */
+    public void thereIsNoData() throws InterruptedException {
         sleepScreen();
     }
 
