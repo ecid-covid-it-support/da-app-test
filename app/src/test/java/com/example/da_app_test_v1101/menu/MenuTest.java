@@ -1,28 +1,5 @@
 package com.example.da_app_test_v1101.menu;
 
-import com.example.da_app_test_v1101.BuildConfig;
-import com.example.da_app_test_v1101.Config;
-import com.example.da_app_test_v1101.User;
-import com.google.common.io.LittleEndianDataInputStream;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-
 /**
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
@@ -47,9 +24,38 @@ import io.appium.java_client.android.AndroidDriver;
  * physical activities: br.edu.uepb.nutes.ocariot:id/navigation_activities
  * sleep: br.edu.uepb.nutes.ocariot:id/navigation_sleep
  * IoT: br.edu.uepb.nutes.ocariot:id/navigation_iot
- * <p>
  * no data: br.edu.uepb.nutes.ocariot:id/box_no_data
+ *
+ * TEST CASES:
+ * TC065 - Children screen - Verify if you are being redirected to the children screen
+ * TC066 - Settings screen - Verify if you are being redirected to the settings screen
+ * TC067 - Correct screen - Verify if you are being redirected to the correct screen
+ * TC068 - Icons are visible
+ *
  **/
+
+
+import com.example.da_app_test_v1101.BuildConfig;
+import com.example.da_app_test_v1101.Config;
+import com.example.da_app_test_v1101.User;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 @RunWith(Parameterized.class)
 public class MenuTest {
@@ -119,7 +125,7 @@ public class MenuTest {
         children_button.click();
         Thread.sleep(2000);
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
-        Assert.assertEquals("Children", toolbar.findElement(By.className("android.widget.TextView")).getText());
+        Assert.assertEquals("Children", toolbar.findElements(By.className("android.widget.TextView")));
     }
 
     @Test
@@ -141,7 +147,7 @@ public class MenuTest {
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
         List<MobileElement> screen = toolbar.findElements(By.className("android.widget.TextView"));
         sleep.click();
-        Assert.assertEquals( "Sleep", screen.get(0).getText());
+        Assert.assertEquals("Sleep", screen.get(0).getText());
     }
 
     @Test
@@ -152,7 +158,7 @@ public class MenuTest {
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
         List<MobileElement> screen = toolbar.findElements(By.className("android.widget.TextView"));
         iot.click();
-        Assert.assertEquals( "IoT", screen.get(0).getText());
+        Assert.assertEquals("IoT", screen.get(0).getText());
     }
 
     @Test
@@ -163,7 +169,7 @@ public class MenuTest {
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
         List<MobileElement> screen = toolbar.findElements(By.className("android.widget.TextView"));
         activities.click();
-        Assert.assertEquals( "Physical activities", screen.get(0).getText());
+        Assert.assertEquals("Physical activities", screen.get(0).getText());
     }
 
     @SuppressWarnings("unchecked")
@@ -172,7 +178,7 @@ public class MenuTest {
     public void iconsVisible() throws InterruptedException {
         menuScreen();
         List<MobileElement> icons = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/icon"));
-        for(MobileElement icon: icons) {
+        for (MobileElement icon : icons) {
             Assert.assertTrue(icon.isDisplayed());
         }
     }
