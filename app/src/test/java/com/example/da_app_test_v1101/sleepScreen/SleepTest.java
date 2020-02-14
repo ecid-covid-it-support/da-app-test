@@ -16,8 +16,16 @@ package com.example.da_app_test_v1101.sleepScreen;
  * <p>
  * List ID:
  * sleep list: br.edu.uepb.nutes.ocariot:id/sleep_list
- * efficiency list: br.edu.uepb.nutes.ocariot:id/sleep_efficiency_tv
+ * efficiency list and details: br.edu.uepb.nutes.ocariot:id/sleep_efficiency_tv
  * sleep chat: br.edu.uepb.nutes.ocariot:id/sleep_chart
+ * sleep period: br.edu.uepb.nutes.ocariot:id/sleep_period_tv
+ * sleep period start: br.edu.uepb.nutes.ocariot:id/sleep_date_start_graph_tv
+ * sleep period end: br.edu.uepb.nutes.ocariot:id/sleep_date_end_graph_tv
+ * box classic: br.edu.uepb.nutes.ocariot:id/box_type_classic
+ * asleep: br.edu.uepb.nutes.ocariot:id/asleep_duration_classic_tv
+ * restless: br.edu.uepb.nutes.ocariot:id/restless_duration_classic_tv
+ * awake: br.edu.uepb.nutes.ocariot:id/awake_duration_classic_tv
+ * awake + restless: br.edu.uepb.nutes.ocariot:id/restless_awake_duration_classic_tv
  * <p>
  * TEST CASES:
  * TC039: Verify is sleep efficiency is greater than or equal zero
