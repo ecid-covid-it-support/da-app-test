@@ -95,16 +95,16 @@ public class MenuTest {
                     1° valid username,
                     2° valid password
                   }*/
-                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
+                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD}/*,
                 {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}*/
         });
     }
 
 
     private void menuScreen() throws InterruptedException {
         User.login(driver, this.validUsername, this.validPassword);
-        Thread.sleep(7000);
+        Thread.sleep(15000);
         /* Children list */
         MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
         /* List children */
@@ -112,8 +112,8 @@ public class MenuTest {
         /* List status Fitbit */
         children.get(0).click();
         Thread.sleep(2000);
-        MobileElement do_not_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button");
-        do_not_fitbit.click();
+        /*MobileElement do_not_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button");
+        do_not_fitbit.click();*/
         Thread.sleep(2000);
     }
 
@@ -125,7 +125,7 @@ public class MenuTest {
         children_button.click();
         Thread.sleep(2000);
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
-        Assert.assertEquals("Children", toolbar.findElements(By.className("android.widget.TextView")));
+        Assert.assertEquals("Children", toolbar.findElements(By.className("android.widget.TextView")).get(0).getText());
     }
 
     @Test
@@ -136,7 +136,7 @@ public class MenuTest {
         settings_button.click();
         Thread.sleep(4000);
         MobileElement action_bar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_bar");
-        Assert.assertEquals("Settings", action_bar.findElements(By.className("android.widget.TextView")).get(0).getText());
+        Assert.assertEquals("Settings", action_bar.findElements(By.className("android.widget.TextView")).get(1).getText());
     }
 
     @Test
@@ -144,9 +144,11 @@ public class MenuTest {
     public void correctScreenSleep() throws InterruptedException {
         menuScreen();
         MobileElement sleep = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_sleep");
+        sleep.click();
+        Thread.sleep(2000);
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
         List<MobileElement> screen = toolbar.findElements(By.className("android.widget.TextView"));
-        sleep.click();
+
         Assert.assertEquals("Sleep", screen.get(0).getText());
     }
 
@@ -165,6 +167,8 @@ public class MenuTest {
     /* TC067 */
     public void correctScreenPhysicalActivities() throws InterruptedException {
         menuScreen();
+        MobileElement iot = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_iot");
+        iot.click();
         MobileElement activities = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_activities");
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
         List<MobileElement> screen = toolbar.findElements(By.className("android.widget.TextView"));
