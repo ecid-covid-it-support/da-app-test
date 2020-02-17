@@ -229,9 +229,6 @@ public class PhysicalActivitiesTest {
 
     }
 
-
-
-
     @Test
     /* TC035 */
     public void levelsBarThanOrEqualsZero() throws InterruptedException {

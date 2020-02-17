@@ -1,6 +1,6 @@
 package com.example.da_app_test_v1101.childrenScreen;
 
-/**
+/******************************************************************
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
  * APK: https://github.com/ocariot/da-app/releases
@@ -34,7 +34,9 @@ package com.example.da_app_test_v1101.childrenScreen;
  * TC017: There is no data
  * TC018: Redirecting activities, sleep, weight and heart rate screen
  * TC019: Redirects to the correct data
- */
+ *
+ *
+ ******************************************************************/
 
 import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;

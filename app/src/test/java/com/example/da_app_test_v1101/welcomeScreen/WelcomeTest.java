@@ -1,6 +1,6 @@
 package com.example.da_app_test_v1101.welcomeScreen;
 
-/**
+/******************************************************
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
  * APK: https://github.com/ocariot/da-app/releases
@@ -42,7 +42,7 @@ package com.example.da_app_test_v1101.welcomeScreen;
  * TC030: Do not currently use Fitbit
  * TC031: Icons and images visibility
  *
- **/
+ ******************************************************/
 
 import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
