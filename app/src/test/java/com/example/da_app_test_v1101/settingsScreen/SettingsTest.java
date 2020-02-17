@@ -108,7 +108,7 @@ public class SettingsTest {
                     2° valid password
                   }*/
                 {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
-//                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
+                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
                 {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM}
         });
     }
@@ -133,12 +133,16 @@ public class SettingsTest {
         /* List options */
         List<MobileElement> options = settings.findElements(By.className("android.widget.LinearLayout"));
         /* click */
-        if (this.validUsername == "FAMOCARIOTBR001") {
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
             options.get(index - 1).click();
         } else {
             options.get(index).click();
         }
     }
+
+    /**
+     * FITBIT LOGIN
+     * */
 
     @Test
     /* TC049 */
@@ -221,6 +225,7 @@ public class SettingsTest {
         MobileElement alert_text = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/llAlertTextContainer");
         Assert.assertTrue(alert_text.isDisplayed());
         Thread.sleep(10000);
+        /* Message alert */
         MobileElement message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");
         if (message.getText().equals("Error!")) {
             Assert.assertEquals("Error!", message.getText());
@@ -229,8 +234,6 @@ public class SettingsTest {
         } else {
             Assert.assertEquals("Success!", message.getText());
         }
-//        br.edu.uepb.nutes.ocariot:id/llAlertTextContainer
-//        br.edu.uepb.nutes.ocariot:id/tvTitle
     }
 
     @Test
@@ -296,11 +299,8 @@ public class SettingsTest {
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
             driver.quit();
         } else {
-//        android:id/icon
             MobileElement icon_fitbit = (MobileElement) driver.findElementById("android:id/icon");
             Assert.assertTrue(icon_fitbit.isDisplayed());
-
-//        android:id/switch_widget
             MobileElement switch_fitbit = (MobileElement) driver.findElementById("android:id/switch_widget");
             Assert.assertTrue(switch_fitbit.isDisplayed());
         }
