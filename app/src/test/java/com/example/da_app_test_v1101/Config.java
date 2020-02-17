@@ -31,7 +31,7 @@ public class Config {
         /* Windows */
 //        config.setCapability("app", "C:\\Users\\diego\\Downloads\\ocariot_da_1.9.4_debug.apk");
         /* Linux */
-        config.setCapability("app", "/home/diego/Documentos/OCARIoT_APK/OCARIoT_DA_APP_v.1.10.1/ocariot_da_v1.10.1-debug.apk");
+        config.setCapability("app", "/home/diego/Downloads/ocariot_da_v1.10.2-tk.debug.apk");
         /*URL remoteUrl = new URL(url);*/
     }
 }

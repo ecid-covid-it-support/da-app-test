@@ -8,7 +8,6 @@ package com.example.da_app_test_v1101.welcomeScreen;
  * https://www.ocariot.com/
  * https://www.ocariot.com.br/
  *
- * <p>
  * Tester: DIEGO MUNIZ
  * Graduanting Computer Science, UEPB.
  *
