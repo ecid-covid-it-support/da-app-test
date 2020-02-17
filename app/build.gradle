@@ -19,6 +19,7 @@ android {
             buildConfigField "String", "USERNAME_HP", "\"$USERNAME_HP\""
             buildConfigField "String", "USERNAME_FM", "\"$USERNAME_FM\""
             buildConfigField "String", "PASSWORD", "\"$PASSWORD\""
+            buildConfigField "String", "PASSWORD_FM", "\"$PASSWORD_FM\""
             buildConfigField "String", "CI_USERNAME_ED", "\"$CI_USERNAME_ED\""
             buildConfigField "String", "CI_USERNAME_HP", "\"$CI_USERNAME_HP\""
             buildConfigField "String", "CI_USERNAME_FM", "\"$CI_USERNAME_FM\""

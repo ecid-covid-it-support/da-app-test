@@ -27,6 +27,7 @@ public class User {
 
     private String validUsername;
     private String validPassword;
+    private String validPassword_FM;
     private String invalidUsername;
     private String invalidPassword;
     private String caseInsensitiveUsername;

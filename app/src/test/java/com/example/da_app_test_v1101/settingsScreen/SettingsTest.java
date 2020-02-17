@@ -19,11 +19,11 @@ package com.example.da_app_test_v1101.settingsScreen;
  * <p>
  * List ID:
  * android:id/list
- * android.widget.LinearLayout[1] - Firbit
- * android.widget.LinearLayout[2] - sync
- * android.widget.LinearLayout[4] - children
- * android.widget.LinearLayout[5] - log out
- * android.widget.LinearLayout[7] - about
+ * android.widget.LinearLayout[2] - Firbit
+ * android.widget.LinearLayout[3] - sync
+ * android.widget.LinearLayout[5] - children
+ * android.widget.LinearLayout[6] - log out
+ * android.widget.LinearLayout[8] - about
  *
  *
  * TEST CASES:
@@ -51,6 +51,8 @@ import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -106,8 +108,8 @@ public class SettingsTest {
                     2° valid password
                   }*/
                 {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}
+//                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM}
         });
     }
 
@@ -120,112 +122,193 @@ public class SettingsTest {
         List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
         /* List status Fitbit */
         children.get(0).click();
-        Thread.sleep(2000);
+        Thread.sleep(1300);
         MobileElement settings_action = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_settings");
         settings_action.click();
-        Thread.sleep(2000);
+        Thread.sleep(1300);
     }
 
-
+    private void list(int index) {
+        MobileElement settings = (MobileElement) driver.findElementById("android:id/list");
+        /* List options */
+        List<MobileElement> options = settings.findElements(By.className("android.widget.LinearLayout"));
+        /* click */
+        if (this.validUsername == "FAMOCARIOTBR001") {
+            options.get(index - 1).click();
+        } else {
+            options.get(index).click();
+        }
+    }
 
     @Test
     /* TC049 */
-    public void validLoginFitbit() {
-
+    public void validLoginFitbit() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC050 */
-    public void invalidLoginFitbit() {
-
+    public void invalidLoginFitbit() throws InterruptedException {
+        settingsScreen();
     }
 
     /**
      * PERMISSIONS
-     * */
+     */
 
     @Test
     /* TC051 */
-    public void allowAll() {
-
+    public void allowAll() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC052 */
-    public void activity() {
-
+    public void activity() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC053 */
-    public void sleep() {
-
+    public void sleep() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC054 */
-    public void heartRate(){
-
+    public void heartRate() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC055 */
-    public void weight(){
-
+    public void weight() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC056 */
-    public void fitbitPage(){
-
+    public void fitbitPage() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC057 */
-    public void revokeFitbit(){
-
+    public void revokeFitbit() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC058 */
-    public void statusFitbit(){
-
+    public void statusFitbit() throws InterruptedException {
+        settingsScreen();
     }
 
     @Test
     /* TC059 */
-    public void  sendRequestUpdate() {
-
+    public void sendRequestUpdate() throws InterruptedException {
+        settingsScreen();
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            list(1);
+        } else {
+            list(3);
+        }
+        Thread.sleep(1300);
+        /* alert */
+        MobileElement alert = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/rlContainer");
+        Assert.assertTrue(alert.isDisplayed());
+        /* alert text container */
+        MobileElement alert_text = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/llAlertTextContainer");
+        Assert.assertTrue(alert_text.isDisplayed());
+        Thread.sleep(10000);
+        MobileElement message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");
+        if (message.getText().equals("Error!")) {
+            Assert.assertEquals("Error!", message.getText());
+        } else if (message.getText().equals("An error occurred while trying to regain access to Fitbit!")) {
+            Assert.assertEquals("An error occurred while trying to regain access to Fitbit!", message.getText());
+        } else {
+            Assert.assertEquals("Success!", message.getText());
+        }
+//        br.edu.uepb.nutes.ocariot:id/llAlertTextContainer
+//        br.edu.uepb.nutes.ocariot:id/tvTitle
     }
 
     @Test
     /* TC060 */
-    public void sendRequestInternetOff() {
-
+    public void sendRequestInternetOff() throws InterruptedException {
+        settingsScreen();
+        driver.toggleWifi();
+        Thread.sleep(4000);
+        list(3);
+        driver.toggleWifi();
+        Thread.sleep(2000);
     }
 
     @Test
     /* TC061 */
-    public void childrenScreen() {
-
+    public void childrenScreen() throws InterruptedException {
+        settingsScreen();
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            list(2);
+        } else {
+            list(4);
+        }
+        Thread.sleep(2000);
+        MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
+        Assert.assertEquals("Children", toolbar.findElements(By.className("android.widget.TextView")).get(0).getText());
     }
 
     @Test
     /* TC062 */
-    public void logOut() {
+    public void logOut() throws InterruptedException {
+        settingsScreen();
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            list(3);
+        } else {
+            list(5);
+        }
+        MobileElement logout = (MobileElement) driver.findElementById("android:id/button1");
+        logout.click();
+        Thread.sleep(1300);
+        MobileElement loginScreen = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_bar_root");
+        Assert.assertTrue(loginScreen.isDisplayed());
 
     }
 
     @Test
     /* TC063 */
-    public void ocariotPrivacyPolicy() {
-
+    public void ocariotPrivacyPolicy() throws InterruptedException {
+        settingsScreen();
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            list(4);
+        } else {
+            list(6);
+        }
+        Thread.sleep(4000);
+        MobileElement url_google = (MobileElement) driver.findElementById("com.android.chrome:id/url_bar");
+        Assert.assertEquals("sites.google.com/view/ocariot-privacy/", url_google.getText());
     }
 
     @Test
     /* TC064 */
-    public void iconsAreVisible() {
+    public void iconsAreVisible() throws InterruptedException {
+        settingsScreen();
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            driver.quit();
+        } else {
+//        android:id/icon
+            MobileElement icon_fitbit = (MobileElement) driver.findElementById("android:id/icon");
+            Assert.assertTrue(icon_fitbit.isDisplayed());
 
+//        android:id/switch_widget
+            MobileElement switch_fitbit = (MobileElement) driver.findElementById("android:id/switch_widget");
+            Assert.assertTrue(switch_fitbit.isDisplayed());
+        }
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
     }
 
 }
