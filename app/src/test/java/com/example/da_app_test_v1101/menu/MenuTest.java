@@ -1,6 +1,6 @@
 package com.example.da_app_test_v1101.menu;
 
-/**
+/*******************************************************
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
  * APK: https://github.com/ocariot/da-app/releases
@@ -32,8 +32,7 @@ package com.example.da_app_test_v1101.menu;
  * TC067 - Correct screen - Verify if you are being redirected to the correct screen
  * TC068 - Icons are visible
  *
- **/
-
+ ******************************************************/
 
 import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
@@ -95,9 +94,9 @@ public class MenuTest {
                     1° valid username,
                     2° valid password
                   }*/
-                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD}/*,
+                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
                 {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}*/
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}
         });
     }
 
