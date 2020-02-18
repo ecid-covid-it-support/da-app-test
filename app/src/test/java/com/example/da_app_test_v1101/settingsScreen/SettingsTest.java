@@ -47,6 +47,8 @@ package com.example.da_app_test_v1101.settingsScreen;
  *
  ******************************************************/
 
+import android.os.Build;
+
 import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
@@ -107,7 +109,7 @@ public class SettingsTest {
                     1° valid username,
                     2° valid password
                   }*/
-                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
+                {/*BuildConfig.USERNAME_ED*/ "EDBR002", BuildConfig.PASSWORD},
                 {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
                 {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM}
         });
@@ -133,11 +135,7 @@ public class SettingsTest {
         /* List options */
         List<MobileElement> options = settings.findElements(By.className("android.widget.LinearLayout"));
         /* click */
-        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
-            options.get(index - 1).click();
-        } else {
-            options.get(index).click();
-        }
+        options.get(index).click();
     }
 
     /**
@@ -242,7 +240,26 @@ public class SettingsTest {
         settingsScreen();
         driver.toggleWifi();
         Thread.sleep(4000);
-        list(3);
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            list(0);
+        } else {
+            list(3);
+        }
+        /* alert */
+        MobileElement alert = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/rlContainer");
+        Assert.assertTrue(alert.isDisplayed());
+        /* alert text container */
+        MobileElement alert_text = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/llAlertTextContainer");
+        Assert.assertTrue(alert_text.isDisplayed());
+        Thread.sleep(10000);
+        /* Message alert */
+        MobileElement message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");
+        if (message.getText().equals("Connection error!")) {
+            Assert.assertEquals("Connection error!", message.getText());
+        } else {
+            Assert.assertEquals("An error occurred while trying to regain access to Fitbit!", message.getText());
+        }
+
         driver.toggleWifi();
         Thread.sleep(2000);
     }
@@ -252,7 +269,7 @@ public class SettingsTest {
     public void childrenScreen() throws InterruptedException {
         settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
-            list(2);
+            list(1);
         } else {
             list(4);
         }
@@ -266,7 +283,7 @@ public class SettingsTest {
     public void logOut() throws InterruptedException {
         settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
-            list(3);
+            list(2);
         } else {
             list(5);
         }
@@ -283,7 +300,7 @@ public class SettingsTest {
     public void ocariotPrivacyPolicy() throws InterruptedException {
         settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
-            list(4);
+            list(3);
         } else {
             list(6);
         }
