@@ -105,7 +105,6 @@ public class SleepTest {
         MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
         /* List children */
         List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
-        /* List status Fitbit */
         children.get(0).click();
         Thread.sleep(2000);
     }
