@@ -18,6 +18,11 @@ package com.example.da_app_test_v1101.iotScreen;
  * No data: br.edu.uepb.nutes.ocariot:id/box_no_data
  * Alert enable bluetooth: br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth
  * allow bluetooth: android:id/button1
+ * permission location: com.android.packageinstaller:id/permission_allow_button
+ *
+ * weight: br.edu.uepb.nutes.ocariot:id/weight_tv
+ * body fat: br.edu.uepb.nutes.ocariot:id/body_fat_tv
+ * average: br.edu.uepb.nutes.ocariot:id/weight_month_average_tv
  * heart rate: br.edu.uepb.nutes.ocariot:id/hr_tv
  * heart rate min: br.edu.uepb.nutes.ocariot:id/hr_min_tv
  * heart rate max: br.edu.uepb.nutes.ocariot:id/hr_max_tv
@@ -121,10 +126,52 @@ public class IotTest {
         sleep_navigation.click();
     }
 
+    private void testGreaterThanOrEqualsZero(String greater_zero) {
+        float number_greater_zero = Float.parseFloat(greater_zero);
+        Assert.assertTrue(number_greater_zero > 0);
+
+    }
+
+    private String takeNumber(String text) {
+        return text.replaceAll("[a-z]", "");
+    }
+
+    private void dataIoT(String idElement, String kgOrPercentagem) {
+        /* element id to be tested */
+        String text_element = driver.findElementById(idElement).getText();
+        if (text_element.equals("--")) {
+            Assert.assertEquals("--", text_element);
+        } else {
+            String number_weight = takeNumber(text_element);
+            testGreaterThanOrEqualsZero(number_weight);
+            /* Example: weight (kg) | Body Fat (%) | Average (kg) */
+            Assert.assertEquals(number_weight + kgOrPercentagem, text_element);
+        }
+    }
+
     @Test
     /* TC042 */
-    public void isGreaterOrEqualZero() throws InterruptedException {
-        iotScreen();
+    public void detailsWeight() throws InterruptedException {
+        /*iotScreen();*/
+
+        User.login(driver, this.validUsername, this.validPassword);
+        Thread.sleep(3000);
+        /* Children list */
+        MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
+        /* List children */
+        List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
+        children.get(0).click();
+        Thread.sleep(2000);
+        /* Sleep screen */
+        MobileElement sleep_navigation = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_iot");
+        sleep_navigation.click();
+
+        /* weight (kg) */
+        dataIoT("br.edu.uepb.nutes.ocariot:id/weight_tv", "kg");
+        /* body fat (%) */
+        dataIoT("br.edu.uepb.nutes.ocariot:id/body_fat_tv", "%");
+        /* average (kg) */
+        dataIoT("br.edu.uepb.nutes.ocariot:id/weight_month_average_tv", "kg");
     }
 
     @Test
@@ -143,10 +190,8 @@ public class IotTest {
     /* TC045 */
     public void thereIsNoData() throws InterruptedException {
         iotScreen();
-
         MobileElement there_is_no_data = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/box_no_data");
         Assert.assertTrue(there_is_no_data.isDisplayed());
-
     }
 
     @Test
@@ -157,21 +202,24 @@ public class IotTest {
         Assert.assertTrue(alert_bluetooth.isDisplayed());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     /* TC047 */
     public void enableBluetooth() throws InterruptedException {
         iotScreen();
-        MobileElement alert_bluetooth = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth");
-        Assert.assertTrue(alert_bluetooth.isDisplayed());
-        alert_bluetooth.click();
+        List<MobileElement> alert_bluetooth_on = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth"));
+        Assert.assertTrue(alert_bluetooth_on.get(0).isDisplayed());
+        alert_bluetooth_on.get(0).click();
         Thread.sleep(2000);
         MobileElement allow_bluetooth = (MobileElement) driver.findElementById("android:id/button1");
         allow_bluetooth.click();
         Thread.sleep(2000);
-        /*MobileElement allow_location = (MobileElement) driver.findElementById("android:id/button1");
-        allow_location.click();*/
+        MobileElement allow_location = (MobileElement) driver.findElementById("com.android.packageinstaller:id/permission_allow_button");
+        allow_location.click();
         Thread.sleep(5000);
-        Assert.assertFalse(alert_bluetooth.isDisplayed());
+        List<MobileElement> alert_bluetooth_off = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth"));
+        Assert.assertTrue(alert_bluetooth_off.isEmpty());
+        Thread.sleep(7000);
     }
 
     @Test
