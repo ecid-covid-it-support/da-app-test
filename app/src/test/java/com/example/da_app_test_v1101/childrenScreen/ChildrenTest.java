@@ -183,6 +183,7 @@ public class ChildrenTest {
 
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     /* TC016 */
     public void searchButton() throws InterruptedException {

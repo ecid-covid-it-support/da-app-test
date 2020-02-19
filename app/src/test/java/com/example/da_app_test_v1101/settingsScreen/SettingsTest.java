@@ -47,8 +47,6 @@ package com.example.da_app_test_v1101.settingsScreen;
  *
  ******************************************************/
 
-import android.os.Build;
-
 import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
@@ -204,6 +202,14 @@ public class SettingsTest {
     /* TC058 */
     public void statusFitbit() throws InterruptedException {
         settingsScreen();
+        MobileElement status = (MobileElement) driver.findElementById("android:id/switch_widget");
+        Assert.assertTrue(status.isDisplayed());
+        String status_fitbit = status.getAttribute("checked");
+        if (status_fitbit.equals("true")) {
+            Assert.assertEquals("true", status_fitbit);
+        } else {
+            Assert.assertEquals("false", status_fitbit);
+        }
     }
 
     @Test
