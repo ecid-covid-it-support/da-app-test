@@ -148,59 +148,61 @@ public class WelcomeTest {
         Assert.assertEquals("Settings", action_bar.findElements(By.className("android.widget.TextView")).get(0).getText());
     }
 
-    /* All failed... */
-    /*@Test
-     *//* TC022 *//*
+    @Test
+    /* TC022 */
     public void provideAccess_validLogin() throws InterruptedException {
         welcomeScreen();
-        *//* click provide Fitbit *//*
+         /*click provide Fitbit*/
         MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
         provide_fitbit.click();
-        *//* Redirect Fitbit account*//*
+         /*Redirect Fitbit account*/
+        Thread.sleep(10000);
+        User.login_fitbit(driver, BuildConfig.FITBIT_USERNAME, BuildConfig.FITBIT_PASSWORD);
+
 
     }
 
     @Test
-    *//* TC023 *//*
+    /* TC023 */
     public void provideAccess_invalidLogin() {
 
     }
 
     @Test
-    *//* TC024 *//*
+    /* TC024 */
     public void allowAll() {
 
     }
 
     @Test
-    *//* TC025 *//*
+    /* TC025 */
     public void allowActivityAndExercise() {
 
     }
 
     @Test
-    *//* TC026 *//*
+    /* TC026 */
     public void allowSleep() {
 
     }
 
     @Test
-    *//* TC027 *//*
+    /* TC027 */
     public void allowHeartRate() {
 
     }
 
     @Test
-    *//* TC028 *//*
+    /* TC028 */
     public void allowWeight() {
 
     }
 
     @Test
-    *//* TC029 *//*
+    /* TC029 */
     public void fitbitLoginPage() {
 
-    }*/
+    }
 
     @Test
     /* TC030 */

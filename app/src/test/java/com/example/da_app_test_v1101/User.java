@@ -21,6 +21,7 @@ package com.example.da_app_test_v1101;
 
 import org.junit.Assert;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class User {
@@ -45,6 +46,20 @@ public class User {
         driver.findElementById("br.edu.uepb.nutes.ocariot:id/password").sendKeys(password);
         /* login button */
         driver.findElementById("br.edu.uepb.nutes.ocariot:id/sign_in_button").click();
+    }
+
+    public static void login_fitbit(AndroidDriver driver, String username, String password) {
+        /**
+         * account.fitbit.com
+         *
+         * username field: ember644
+         * password field: ember645
+         * login button: ember685
+         *
+         */
+        driver.findElementById("ember644").sendKeys(username);
+        driver.findElementById("ember645").sendKeys(password);
+        driver.findElementById("ember685").click();
     }
 
     public static void authenticationFailed(AndroidDriver driver) {
