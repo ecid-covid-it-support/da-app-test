@@ -50,21 +50,19 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.offset.PointOption;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
@@ -181,24 +179,40 @@ public class ChildrenTest {
         Assert.assertEquals(nameChild, toolbar.findElements(By.className("android.widget.TextView")).get(1).getText());
     }
 
+    Set<String> name_child = new HashSet<>();
+
     @Test
     /* TC014 */
     public void sortUsername() throws InterruptedException {
         childrenScreen();
-        Dimension size = driver.manage().window().getSize();
-        int starty = (int) (size.height * 0.8);
-        int endy = (int) (size.height * 0.2);
-        int startx = (int) (size.width / 2.2);
-        for (int i = 0; i <= 15; i++) {
-            new TouchAction(driver).press(point(startx, 1700)).waitAction(waitOptions(ofSeconds(3)))
-                    .moveTo(point(startx, 200)).release().perform();
-        }
         MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
-//        List<MobileElement> list = children_list.findElements()
 
-//        List<MobileElement> name = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/name_child"));
+        List<MobileElement> list_children = children_list.findElements(By.className("android.widget.RelativeLayout"));
 
+        Dimension size = driver.manage().window().getSize();
+        Dimension item = list_children.get(0).getSize();
 
+        int starty = (int) (size.height * 0.8);
+        int endy = (int) (starty - item.height * 1.22);
+        int startx = size.width / 2;
+
+        int list_end = list_children.size() - 1 ;
+
+        name_child.clear();
+        for ( int i = 0 ; i < list_end ; i++ ) {
+            name_child.add(list_children.get(i).getText());
+        }
+
+        int fim = 0;
+        while (fim != 1) {
+            new TouchAction(driver).press(point(startx, starty)).waitAction(waitOptions(ofSeconds(3)))
+                    .moveTo(point(startx, endy)).release().perform();
+            if (name_child.contains(list_children.get(list_end).getText())) {
+                fim = 1;
+            } else {
+                name_child.add(list_children.get(list_end).getText());
+            }
+        }
     }
 
     @Test
@@ -239,6 +253,4 @@ public class ChildrenTest {
     public void tearDown() {
         driver.quit();
     }
-
-
 }
