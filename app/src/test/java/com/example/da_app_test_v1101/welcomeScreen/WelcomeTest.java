@@ -129,7 +129,7 @@ public class WelcomeTest {
     @Test
     /* TC020 */
     public void childrenButton() throws InterruptedException {
-        welcomeScreen();
+        this.welcomeScreen();
         MobileElement children_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_child");
         children_button.click();
         Thread.sleep(2000);
@@ -140,7 +140,7 @@ public class WelcomeTest {
     @Test
     /* TC021 */
     public void settingsButtons() throws InterruptedException {
-        welcomeScreen();
+        this.welcomeScreen();
         MobileElement settings_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_settings");
         settings_button.click();
         Thread.sleep(4000);
@@ -151,63 +151,115 @@ public class WelcomeTest {
     @Test
     /* TC022 */
     public void provideAccess_validLogin() throws InterruptedException {
-        welcomeScreen();
+        this.welcomeScreen();
          /*click provide Fitbit*/
         MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
         provide_fitbit.click();
          /*Redirect Fitbit account*/
         Thread.sleep(10000);
-        User.login_fitbit(driver, BuildConfig.FITBIT_USERNAME, BuildConfig.FITBIT_PASSWORD);
-
+        User.login_fitbit(driver, this.fitbitUsername, this.fitbitPassword);
+        Thread.sleep(7000);
+        Assert.assertTrue(driver.findElementById("com.android.chrome:id/compositor_view_holder").isDisplayed());
 
     }
 
     @Test
     /* TC023 */
-    public void provideAccess_invalidLogin() {
+    public void provideAccess_invalidLogin() throws InterruptedException {
+        this.welcomeScreen();
+        /*click provide Fitbit*/
+        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
+        provide_fitbit.click();
+        /*Redirect Fitbit account*/
+        Thread.sleep(10000);
+        User.login_fitbit(driver, "invalid@gmail.com", "passwordfitbit");
+        Thread.sleep(7000);
+        MobileElement invalid_login = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View/android.view.View[1]");
+        Assert.assertTrue(invalid_login.isDisplayed());
+    }
 
+    private void access_fitbit() throws InterruptedException {
+        this.welcomeScreen();
+        /* click provide Fitbit */
+        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
+        provide_fitbit.click();
+        /* Redirect Fitbit account */
+        Thread.sleep(10000);
+        /* login valid fitbit */
+        User.login_fitbit(driver, this.fitbitUsername, this.fitbitPassword);
+        Thread.sleep(7000);
+    }
+
+    private void responsePermissions(String Xpath) throws InterruptedException {
+        this.access_fitbit();
+        driver.findElementByXPath(Xpath).click();
+        driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.view.View[3]/android.widget.Button[2]").click();
+        Thread.sleep(7000);
+        MobileElement alert = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/flAlertBackground");
+        Assert.assertTrue(alert.isDisplayed());
+        MobileElement alert_message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");
+        String message_alert = alert_message.getText();
+        if (message_alert.equals("Success!")) {
+            Assert.assertEquals("Success!", message_alert);
+        } else {
+            Assert.assertEquals("Error!", message_alert);
+        }
     }
 
     @Test
     /* TC024 */
-    public void allowAll() {
-
+    public void allowAll() throws InterruptedException {
+        /* allow all */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[1]/android.widget.CheckBox");
     }
 
     @Test
     /* TC025 */
-    public void allowActivityAndExercise() {
-
+    public void allowActivityAndExercise() throws InterruptedException {
+        /* allow activity and exercise */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[2]/android.widget.CheckBox");
     }
 
     @Test
     /* TC026 */
-    public void allowSleep() {
-
+    public void allowSleep() throws InterruptedException {
+        /* allow sleep */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[3]/android.widget.CheckBox");
     }
 
     @Test
     /* TC027 */
-    public void allowHeartRate() {
-
+    public void allowHeartRate() throws InterruptedException {
+        /* allow heart rate */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[4]/android.widget.CheckBox");
     }
 
     @Test
     /* TC028 */
-    public void allowWeight() {
-
+    public void allowWeight() throws InterruptedException {
+        /* allow weight */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[5]/android.widget.CheckBox");
     }
 
     @Test
     /* TC029 */
-    public void fitbitLoginPage() {
-
+    public void fitbitLoginPage() throws InterruptedException {
+        this.welcomeScreen();
+        /* click provide Fitbit */
+        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
+        provide_fitbit.click();
+        /* Redirect Fitbit account */
+        Thread.sleep(10000);
+        MobileElement page_fitbit = (MobileElement) driver.findElementById("com.android.chrome:id/compositor_view_holder");
+        Assert.assertTrue(page_fitbit.isDisplayed());
+        MobileElement url_fitbit = (MobileElement) driver.findElementById("com.android.chrome:id/url_bar");
+        Assert.assertEquals("accounts.fitbit.com", url_fitbit.getText());
     }
 
     @Test
     /* TC030 */
     public void doNotCurrentlyUseFitbit() throws InterruptedException {
-        welcomeScreen();
+        this.welcomeScreen();
         /* Do not user Fitbit */
         MobileElement do_not_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button");
         do_not_fitbit.click();
@@ -220,7 +272,7 @@ public class WelcomeTest {
     @Test
     /* TC031 */
     public void iconAndImageVisibility() throws InterruptedException {
-        welcomeScreen();
+        this.welcomeScreen();
         Thread.sleep(2000);
         /* Icon button is visible */
         MobileElement settings_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_settings");
@@ -232,9 +284,9 @@ public class WelcomeTest {
         Assert.assertTrue(instructions.isDisplayed());
     }
 
-    @After
+    /*@After
     public void tearDown() {
         driver.quit();
-    }
+    }*/
 
 }
