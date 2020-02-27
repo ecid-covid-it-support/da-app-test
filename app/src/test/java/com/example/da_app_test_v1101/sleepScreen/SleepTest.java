@@ -130,47 +130,47 @@ public class SleepTest {
     private void testSleepData(String id_Element) {
         String text_element = driver.findElementById(id_Element).getText();
         String number = takeNumber(text_element);
-        testGreaterOrEqualsZero(number);
+        this.testGreaterOrEqualsZero(number);
     }
 
     /* TC039 */
     private void detailsSleepClassic() throws InterruptedException {
 //      list_sleep.get(4).click();
         /* asleep */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/asleep_duration_classic_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/asleep_duration_classic_tv");
         /* restless */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/restless_duration_classic_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/restless_duration_classic_tv");
         /* awake */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/awake_duration_classic_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/awake_duration_classic_tv");
         /* awake + restless */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/restless_awake_duration_classic_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/restless_awake_duration_classic_tv");
     }
 
     /* TC039 */
     private void detailsSleepStages() throws InterruptedException {
 //      list_sleep.get(1).click();
         /* awake */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/awake_duration_stages_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/awake_duration_stages_tv");
         /* REM */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/rem_duration_stages_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/rem_duration_stages_tv");
         /* Light */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/light_duration_stages_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/light_duration_stages_tv");
         /* Deep */
-        testSleepData("br.edu.uepb.nutes.ocariot:id/deep_duration_stages_tv");
+        this.testSleepData("br.edu.uepb.nutes.ocariot:id/deep_duration_stages_tv");
     }
 
     @SuppressWarnings("unchecked")
     @Test
     /* TC039 */
     public void detailsSleep() throws InterruptedException {
-        sleepScreen();
+        this.sleepScreen();
         MobileElement sleep_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/sleep_list");
         List<MobileElement> list_sleep = sleep_list.findElements(By.className("android.widget.RelativeLayout"));
         list_sleep.get(4).click();
         Thread.sleep(2000);
         /* Efficiency */
         String efficiency = takeNumber(driver.findElementById("br.edu.uepb.nutes.ocariot:id/sleep_efficiency_tv").getText());
-        testGreaterOrEqualsZero(efficiency);
+        this.testGreaterOrEqualsZero(efficiency);
         /* Sleep period */
         MobileElement sleep_period_tv = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/sleep_period_tv");
         sleep_period_tv.isDisplayed();
@@ -186,30 +186,28 @@ public class SleepTest {
         Assert.assertTrue(driver.findElementById("br.edu.uepb.nutes.ocariot:id/sleep_chart").isDisplayed());
         List<MobileElement> details_sleep = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/box_type_classic"));
         if (details_sleep.isEmpty()) {
-            detailsSleepStages();
+            this.detailsSleepStages();
         } else {
-            detailsSleepClassic();
+            this.detailsSleepClassic();
         }
     }
 
     @Test
     /* TC040 */
     public void graph() throws InterruptedException {
-        sleepScreen();
+        this.sleepScreen();
         MobileElement sleep_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/sleep_list");
         List<MobileElement> list_sleep = sleep_list.findElements(By.className("android.widget.RelativeLayout"));
         list_sleep.get(0).click();
         Thread.sleep(2000);
-
         MobileElement sleep_chat = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/sleep_chart");
         Assert.assertTrue(sleep_chat.isDisplayed());
-
     }
 
     @Test
     /* TC041 */
     public void thereIsNoData() throws InterruptedException {
-        sleepScreen();
+        this.sleepScreen();
     }
 
     @After

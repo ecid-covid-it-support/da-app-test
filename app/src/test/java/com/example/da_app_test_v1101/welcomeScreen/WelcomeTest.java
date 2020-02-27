@@ -47,7 +47,6 @@ import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -160,7 +159,6 @@ public class WelcomeTest {
         User.login_fitbit(driver, this.fitbitUsername, this.fitbitPassword);
         Thread.sleep(7000);
         Assert.assertTrue(driver.findElementById("com.android.chrome:id/compositor_view_holder").isDisplayed());
-
     }
 
     @Test

@@ -84,15 +84,21 @@ public class SettingsTest {
 
     private String validUsername;
     private String validPassword;
+    private String fitbitUsername;
+    private String fitbitPassword;
 
     User user;
 
     public SettingsTest(
             String validUsername,
-            String validPassword
+            String validPassword,
+            String fitbitUsername,
+            String fitbitPassword
     ) {
         this.validUsername = validUsername;
         this.validPassword = validPassword;
+        this.fitbitUsername = fitbitUsername;
+        this.fitbitPassword = fitbitPassword;
     }
 
     @Before
@@ -107,9 +113,9 @@ public class SettingsTest {
                     1° valid username,
                     2° valid password
                   }*/
-                {/*BuildConfig.USERNAME_ED*/ "EDBR002", BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM}
+                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD, BuildConfig.FITBIT_USERNAME, BuildConfig.FITBIT_PASSWORD},
+                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD, BuildConfig.FITBIT_USERNAME, BuildConfig.FITBIT_PASSWORD},
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM, BuildConfig.FITBIT_USERNAME, BuildConfig.FITBIT_PASSWORD}
         });
     }
 
@@ -143,65 +149,120 @@ public class SettingsTest {
     @Test
     /* TC049 */
     public void validLoginFitbit() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
+        /*click provide Fitbit*/
+        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
+        provide_fitbit.click();
+        /*Redirect Fitbit account*/
+        Thread.sleep(10000);
+        User.login_fitbit(driver, this.fitbitUsername, this.fitbitPassword);
+        Thread.sleep(7000);
+        Assert.assertTrue(driver.findElementById("com.android.chrome:id/compositor_view_holder").isDisplayed());
     }
 
     @Test
     /* TC050 */
     public void invalidLoginFitbit() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
+        /*click provide Fitbit*/
+        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
+        provide_fitbit.click();
+        /*Redirect Fitbit account*/
+        Thread.sleep(10000);
+        User.login_fitbit(driver, "invalid@gmail.com", "passwordfitbit");
+        Thread.sleep(7000);
+        MobileElement invalid_login = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View/android.view.View[1]");
+        Assert.assertTrue(invalid_login.isDisplayed());
     }
 
     /**
      * PERMISSIONS
      */
+    private void access_fitbit() throws InterruptedException {
+        this.settingsScreen();
+        /* click provide Fitbit */
+        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
+        provide_fitbit.click();
+        /* Redirect Fitbit account */
+        Thread.sleep(10000);
+        /* login valid fitbit */
+        User.login_fitbit(driver, this.fitbitUsername, this.fitbitPassword);
+        Thread.sleep(7000);
+    }
+
+    private void responsePermissions(String Xpath) throws InterruptedException {
+        this.access_fitbit();
+        driver.findElementByXPath(Xpath).click();
+        driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.view.View[3]/android.widget.Button[2]").click();
+        Thread.sleep(7000);
+        MobileElement alert = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/flAlertBackground");
+        Assert.assertTrue(alert.isDisplayed());
+        MobileElement alert_message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");
+        String message_alert = alert_message.getText();
+        if (message_alert.equals("Success!")) {
+            Assert.assertEquals("Success!", message_alert);
+        } else {
+            Assert.assertEquals("Error!", message_alert);
+        }
+    }
 
     @Test
     /* TC051 */
     public void allowAll() throws InterruptedException {
-        settingsScreen();
+        /* allow all */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[1]/android.widget.CheckBox");
     }
 
     @Test
     /* TC052 */
     public void activity() throws InterruptedException {
-        settingsScreen();
+        /* allow activity and exercise */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[2]/android.widget.CheckBox");
     }
 
     @Test
     /* TC053 */
     public void sleep() throws InterruptedException {
-        settingsScreen();
+        /* allow sleep */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[3]/android.widget.CheckBox");
     }
 
     @Test
     /* TC054 */
     public void heartRate() throws InterruptedException {
-        settingsScreen();
+        /* allow heart rate */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[4]/android.widget.CheckBox");
     }
 
     @Test
     /* TC055 */
     public void weight() throws InterruptedException {
-        settingsScreen();
+        /* allow weight */
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[5]/android.widget.CheckBox");
     }
 
     @Test
     /* TC056 */
     public void fitbitPage() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
+        /* Redirect Fitbit account */
+        Thread.sleep(10000);
+        MobileElement page_fitbit = (MobileElement) driver.findElementById("com.android.chrome:id/compositor_view_holder");
+        Assert.assertTrue(page_fitbit.isDisplayed());
+        MobileElement url_fitbit = (MobileElement) driver.findElementById("com.android.chrome:id/url_bar");
+        Assert.assertEquals("accounts.fitbit.com", url_fitbit.getText());
     }
 
     @Test
     /* TC057 */
     public void revokeFitbit() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
     }
 
     @Test
     /* TC058 */
     public void statusFitbit() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
         MobileElement status = (MobileElement) driver.findElementById("android:id/switch_widget");
         Assert.assertTrue(status.isDisplayed());
         String status_fitbit = status.getAttribute("checked");
@@ -215,7 +276,7 @@ public class SettingsTest {
     @Test
     /* TC059 */
     public void sendRequestUpdate() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
             list(1);
         } else {
@@ -243,7 +304,7 @@ public class SettingsTest {
     @Test
     /* TC060 */
     public void sendRequestInternetOff() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
         driver.toggleWifi();
         Thread.sleep(4000);
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
@@ -273,7 +334,7 @@ public class SettingsTest {
     @Test
     /* TC061 */
     public void childrenScreen() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
             list(1);
         } else {
@@ -287,7 +348,7 @@ public class SettingsTest {
     @Test
     /* TC062 */
     public void logOut() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
             list(2);
         } else {
@@ -304,7 +365,7 @@ public class SettingsTest {
     @Test
     /* TC063 */
     public void ocariotPrivacyPolicy() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
             list(3);
         } else {
@@ -318,7 +379,7 @@ public class SettingsTest {
     @Test
     /* TC064 */
     public void iconsAreVisible() throws InterruptedException {
-        settingsScreen();
+        this.settingsScreen();
         if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
             driver.quit();
         } else {

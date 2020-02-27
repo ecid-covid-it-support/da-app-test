@@ -33,11 +33,8 @@ public class User {
     private String invalidPassword;
     private String caseInsensitiveUsername;
     private String caseInsensitivePassword;
-
     private String fitbitUsername;
     private String fitbitPassword;
-
-
 
     public static void login(AndroidDriver driver, String username, String password) {
         /* username */
@@ -49,14 +46,6 @@ public class User {
     }
 
     public static void login_fitbit(AndroidDriver driver, String username, String password) {
-        /**
-         * account.fitbit.com
-         *
-         * username field: ember644
-         * password field: ember645
-         * login button: ember685
-         *
-         */
         driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View/android.view.View[5]/android.view.View[1]/android.widget.EditText").sendKeys(username);
         driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View/android.view.View[5]/android.view.View[2]/android.widget.EditText").sendKeys(password);
         driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View/android.view.View[5]/android.view.View[5]/android.widget.Button").click();
