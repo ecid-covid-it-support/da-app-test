@@ -257,7 +257,7 @@ public class PhysicalActivitiesTest {
         /* Child list */
         MobileElement child_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
         List<MobileElement> list_child = child_list.findElements(By.className("android.widget.RelativeLayout"));
-        list_child.get(1).click();
+        list_child.get(4).click();
         Thread.sleep(2000);
         /* br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button */
         if (this.validUsername.equals(BuildConfig.USERNAME_ED) || this.validUsername.equals(BuildConfig.USERNAME_HP)) {

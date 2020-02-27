@@ -47,6 +47,7 @@ import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -282,9 +283,9 @@ public class WelcomeTest {
         Assert.assertTrue(instructions.isDisplayed());
     }
 
-    /*@After
+    @After
     public void tearDown() {
         driver.quit();
-    }*/
+    }
 
 }

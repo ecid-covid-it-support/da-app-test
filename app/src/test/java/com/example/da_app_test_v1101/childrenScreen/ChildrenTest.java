@@ -240,7 +240,7 @@ public class ChildrenTest {
     @Test
     /* TC017 */
     public void noData() throws InterruptedException {
-        User.login(driver, "EDBR01", BuildConfig.PASSWORD);
+        User.login(driver, "EDBR003", BuildConfig.PASSWORD);
         /* br.edu.uepb.nutes.ocariot:id/box_no_data */
         /* br.edu.uepb.nutes.ocariot:id/logout_button */
         Thread.sleep(4000);

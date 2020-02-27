@@ -19,7 +19,7 @@ package com.example.da_app_test_v1101.settingsScreen;
  * <p>
  * List ID:
  * android:id/list
- * android.widget.LinearLayout[2] - Firbit
+ * android.widget.LinearLayout[2] - Fitbit
  * android.widget.LinearLayout[3] - sync
  * android.widget.LinearLayout[5] - children
  * android.widget.LinearLayout[6] - log out
@@ -144,7 +144,7 @@ public class SettingsTest {
 
     /**
      * FITBIT LOGIN
-     * */
+     */
 
     @Test
     /* TC049 */
@@ -257,6 +257,25 @@ public class SettingsTest {
     /* TC057 */
     public void revokeFitbit() throws InterruptedException {
         this.settingsScreen();
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            driver.quit();
+        } else {
+            list(1);
+        }
+
+        MobileElement yes = (MobileElement) driver.findElementById("android:id/button1");
+        yes.click();
+
+        Thread.sleep(7000);
+        MobileElement alert = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/flAlertBackground");
+        Assert.assertTrue(alert.isDisplayed());
+        MobileElement alert_message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");
+        String message_alert = alert_message.getText();
+        if (message_alert.equals("Success!")) {
+            Assert.assertEquals("Success!", message_alert);
+        } else {
+            Assert.assertEquals("Error!", message_alert);
+        }
     }
 
     @Test
