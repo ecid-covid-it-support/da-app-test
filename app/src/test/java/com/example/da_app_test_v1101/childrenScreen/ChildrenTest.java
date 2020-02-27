@@ -125,7 +125,7 @@ public class ChildrenTest {
     @Test
     /* TC011 */
     public void iconAndimagesVisivility() throws InterruptedException {
-        childrenScreen();
+        this.childrenScreen();
         /* Search icon */
         Assert.assertTrue(driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_button").isDisplayed());
         /* sort icon */
@@ -146,7 +146,7 @@ public class ChildrenTest {
     @Test
     /* TC012, TC013, TC018 and TC019 */
     public void habilitatedFitbit() throws InterruptedException {
-        childrenScreen();
+        this.childrenScreen();
         /* Children list */
         MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
         /* List children */
@@ -184,7 +184,7 @@ public class ChildrenTest {
     @Test
     /* TC014 */
     public void sortUsername() throws InterruptedException {
-        childrenScreen();
+        this.childrenScreen();
         MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
 
         List<MobileElement> list_children = children_list.findElements(By.className("android.widget.RelativeLayout"));
@@ -225,7 +225,7 @@ public class ChildrenTest {
     @Test
     /* TC016 */
     public void searchButton() throws InterruptedException {
-        childrenScreen();
+        this.childrenScreen();
         /* Click the search button */
         driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_button").click();
         Thread.sleep(2000);

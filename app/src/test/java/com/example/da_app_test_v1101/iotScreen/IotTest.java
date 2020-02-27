@@ -167,47 +167,47 @@ public class IotTest {
         sleep_navigation.click();
 
         /* weight (kg) */
-        dataIoT("br.edu.uepb.nutes.ocariot:id/weight_tv", "kg");
+        this.dataIoT("br.edu.uepb.nutes.ocariot:id/weight_tv", "kg");
         /* body fat (%) */
-        dataIoT("br.edu.uepb.nutes.ocariot:id/body_fat_tv", "%");
+        this.dataIoT("br.edu.uepb.nutes.ocariot:id/body_fat_tv", "%");
         /* average (kg) */
-        dataIoT("br.edu.uepb.nutes.ocariot:id/weight_month_average_tv", "kg");
+        this.dataIoT("br.edu.uepb.nutes.ocariot:id/weight_month_average_tv", "kg");
     }
 
     @Test
     /* TC043 */
     public void heartRateData() throws InterruptedException {
-        iotScreen();
+        this.iotScreen();
         /* Connecting POLAR */
         Thread.sleep(15000);
         MobileElement heart_rate = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/hr_tv");
         heart_rate.isDisplayed();
-        testGreaterThanOrEqualsZero(heart_rate.getText());
+        this.testGreaterThanOrEqualsZero(heart_rate.getText());
     }
 
     @Test
     /* TC044 */
     public void MinMaxAverageHeartRate() throws InterruptedException {
-        iotScreen();
+        this.iotScreen();
         /* Connecting POLAR */
         Thread.sleep(15000);
         MobileElement max_heart_rate = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/hr_max_tv");
         max_heart_rate.isDisplayed();
-        testGreaterThanOrEqualsZero(max_heart_rate.getText());
+        this.testGreaterThanOrEqualsZero(max_heart_rate.getText());
 
         MobileElement min_heart_rate = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/hr_min_tv");
         min_heart_rate.isDisplayed();
-        testGreaterThanOrEqualsZero(min_heart_rate.getText());
+        this.testGreaterThanOrEqualsZero(min_heart_rate.getText());
 
         MobileElement average_heart_rate = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/hr_min_tv");
         average_heart_rate.isDisplayed();
-        testGreaterThanOrEqualsZero(average_heart_rate.getText());
+        this.testGreaterThanOrEqualsZero(average_heart_rate.getText());
     }
 
     @Test
     /* TC045 */
     public void thereIsNoData() throws InterruptedException {
-        iotScreen();
+        this.iotScreen();
         MobileElement there_is_no_data = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/box_no_data");
         Assert.assertTrue(there_is_no_data.isDisplayed());
     }
@@ -215,7 +215,7 @@ public class IotTest {
     @Test
     /* TC046 */
     public void disableBluetooth() throws InterruptedException {
-        iotScreen();
+        this.iotScreen();
         MobileElement alert_bluetooth = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth");
         Assert.assertTrue(alert_bluetooth.isDisplayed());
     }
@@ -224,7 +224,7 @@ public class IotTest {
     @Test
     /* TC047 */
     public void enableBluetooth() throws InterruptedException {
-        iotScreen();
+        this.iotScreen();
         List<MobileElement> alert_bluetooth_on = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth"));
         Assert.assertTrue(alert_bluetooth_on.get(0).isDisplayed());
         alert_bluetooth_on.get(0).click();
@@ -243,7 +243,7 @@ public class IotTest {
     @Test
     /* TC048 */
     public void graphVisibility() throws InterruptedException {
-        iotScreen();
+        this.iotScreen();
         /* Connecting POLAR */
         Thread.sleep(15000);
         MobileElement hr_chart = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/hr_chart");

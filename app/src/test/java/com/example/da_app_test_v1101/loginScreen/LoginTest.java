@@ -126,7 +126,7 @@ public class LoginTest {
     /* TC001 */
     public void validLogin() throws InterruptedException {
         /* Check the pilot */
-        brazilianPilot();
+        this.brazilianPilot();
         /* Username and password valid */
         User.login(driver, this.validUsername, this.validPassword);
         Thread.sleep(7000);
@@ -139,7 +139,7 @@ public class LoginTest {
     /* TC002 */
     public void ciUsername() {
         /* Check the pilot */
-        brazilianPilot();
+        this.brazilianPilot();
         /* Case-insensitive username and password valid */
         User.login(driver, this.caseInsensitiveUsername, this.validPassword);
         /* Message alert */
@@ -150,7 +150,7 @@ public class LoginTest {
     /* TC003 */
     public void ciPassword() {
         /* Check the pilot */
-        brazilianPilot();
+        this.brazilianPilot();
         /* Case-insensitive password and username valid */
         User.login(driver, this.validUsername, this.caseInsensitivePassword);
         /* Message alert */
@@ -161,7 +161,7 @@ public class LoginTest {
     /* TC004 */
     public void invalidPassword() {
         /* Check the pilot */
-        brazilianPilot();
+        this.brazilianPilot();
         /* valid username and invalid password */
         User.login(driver, this.validUsername, this.invalidPassword);
         /* Message alert */
@@ -172,7 +172,7 @@ public class LoginTest {
     /* TC005 */
     public void invalidUsername() {
         /* Check the pilot */
-        brazilianPilot();
+        this.brazilianPilot();
         /* Invalid username and valid password */
         User.login(driver, this.invalidUsername, this.validPassword);
         /* Message alert */
@@ -186,7 +186,7 @@ public class LoginTest {
         driver.toggleWifi();
         Thread.sleep(5000);
         /* Check the pilot */
-        brazilianPilot();
+        this.brazilianPilot();
         /* username and password valid */
         User.login(driver, this.validUsername, this.validPassword);
         Assert.assertEquals("Connection error!", driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle").getText());

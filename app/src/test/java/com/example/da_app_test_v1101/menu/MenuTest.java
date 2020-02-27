@@ -119,7 +119,7 @@ public class MenuTest {
     @Test
     /* TC065 */
     public void childrenScreen() throws InterruptedException {
-        menuScreen();
+        this.menuScreen();
         MobileElement children_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_child");
         children_button.click();
         Thread.sleep(2000);
@@ -130,7 +130,7 @@ public class MenuTest {
     @Test
     /* TC066 */
     public void settingsScreen() throws InterruptedException {
-        menuScreen();
+        this.menuScreen();
         MobileElement settings_button = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_settings");
         settings_button.click();
         Thread.sleep(4000);
@@ -141,7 +141,7 @@ public class MenuTest {
     @Test
     /* TC067 */
     public void correctScreenSleep() throws InterruptedException {
-        menuScreen();
+        this.menuScreen();
         MobileElement sleep = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_sleep");
         sleep.click();
         Thread.sleep(2000);
@@ -154,7 +154,7 @@ public class MenuTest {
     @Test
     /* TC067 */
     public void correctScreenIot() throws InterruptedException {
-        menuScreen();
+        this.menuScreen();
         MobileElement iot = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_iot");
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
         List<MobileElement> screen = toolbar.findElements(By.className("android.widget.TextView"));
@@ -165,7 +165,7 @@ public class MenuTest {
     @Test
     /* TC067 */
     public void correctScreenPhysicalActivities() throws InterruptedException {
-        menuScreen();
+        this.menuScreen();
         MobileElement iot = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_iot");
         iot.click();
         MobileElement activities = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_activities");
@@ -179,7 +179,7 @@ public class MenuTest {
     @Test
     /* TC068 */
     public void iconsVisible() throws InterruptedException {
-        menuScreen();
+        this.menuScreen();
         List<MobileElement> icons = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/icon"));
         for (MobileElement icon : icons) {
             Assert.assertTrue(icon.isDisplayed());
