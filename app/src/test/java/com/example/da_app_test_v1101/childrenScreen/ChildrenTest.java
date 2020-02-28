@@ -49,24 +49,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-
-import static io.appium.java_client.touch.WaitOptions.waitOptions;
-import static io.appium.java_client.touch.offset.PointOption.point;
-import static java.time.Duration.ofSeconds;
 
 @RunWith(Parameterized.class)
 public class ChildrenTest {
@@ -106,9 +98,9 @@ public class ChildrenTest {
                     1° valid username,
                     2° valid password
                   }*/
-                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD}/*,
+                {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
                 {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}*/
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM}
         });
     }
 
@@ -130,11 +122,6 @@ public class ChildrenTest {
         Assert.assertTrue(driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_button").isDisplayed());
         /* sort icon */
         Assert.assertTrue(driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_sort").isDisplayed());
-        /* gender icon */
-        List<MobileElement> gender = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/gender_img"));
-        for (MobileElement element : gender) {
-            Assert.assertTrue(element.isDisplayed());
-        }
         /* Fitbit status */
         List<MobileElement> status = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/fitbit_status_cb"));
         for (MobileElement mobileElement : status) {
@@ -179,10 +166,10 @@ public class ChildrenTest {
         Assert.assertEquals(nameChild, toolbar.findElements(By.className("android.widget.TextView")).get(1).getText());
     }
 
-    Set<String> name_child = new HashSet<>();
+//    Set<String> name_child = new HashSet<>();
 
-    @Test
-    /* TC014 */
+    /*@Test
+    *//* TC014 *//*
     public void sortUsername() throws InterruptedException {
         this.childrenScreen();
         MobileElement children_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/children_list");
@@ -216,11 +203,11 @@ public class ChildrenTest {
     }
 
     @Test
-    /* TC015 */
+    *//* TC015 *//*
     public void sortSynchronized() {
 
     }
-
+*/
     @SuppressWarnings("unchecked")
     @Test
     /* TC016 */
@@ -230,19 +217,17 @@ public class ChildrenTest {
         driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_button").click();
         Thread.sleep(2000);
         /* In the search field enter the child's name */
-        driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_src_text").sendKeys("BR001");
+        driver.findElementById("br.edu.uepb.nutes.ocariot:id/search_src_text").sendKeys("OCARIOTBR001");
         Thread.sleep(2000);
         /* Make sure the first child on the list is the correct zero */
         List<MobileElement> children = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/name_child"));
-        Assert.assertEquals("BR001", children.get(0).getText());
+        Assert.assertEquals("OCARIOTBR001", children.get(0).getText());
     }
 
     @Test
     /* TC017 */
     public void noData() throws InterruptedException {
-        User.login(driver, "EDBR003", BuildConfig.PASSWORD);
-        /* br.edu.uepb.nutes.ocariot:id/box_no_data */
-        /* br.edu.uepb.nutes.ocariot:id/logout_button */
+        User.login(driver, "EDBR010", BuildConfig.PASSWORD);
         Thread.sleep(4000);
         /* No to children on the list */
         MobileElement box_no_data = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/box_no_data");

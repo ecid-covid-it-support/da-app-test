@@ -3,6 +3,7 @@ package com.example.da_app_test_v1101.welcomeScreen;
 /******************************************************
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
+ * version: v1.10.2
  * APK: https://github.com/ocariot/da-app/releases
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
@@ -193,7 +194,7 @@ public class WelcomeTest {
         this.access_fitbit();
         driver.findElementByXPath(Xpath).click();
         driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.view.View[3]/android.widget.Button[2]").click();
-        Thread.sleep(7000);
+        Thread.sleep(12000);
         MobileElement alert = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/flAlertBackground");
         Assert.assertTrue(alert.isDisplayed());
         MobileElement alert_message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");
@@ -213,31 +214,31 @@ public class WelcomeTest {
     }
 
     @Test
-    /* TC025 */
+//     TC025
     public void allowActivityAndExercise() throws InterruptedException {
-        /* allow activity and exercise */
-        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[2]/android.widget.CheckBox");
+//         allow activity and exercise
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[5]/android.widget.CheckBox");
     }
 
     @Test
-    /* TC026 */
+//     TC026
     public void allowSleep() throws InterruptedException {
-        /* allow sleep */
+//         allow sleep
         this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[3]/android.widget.CheckBox");
     }
 
     @Test
-    /* TC027 */
+//     TC027
     public void allowHeartRate() throws InterruptedException {
-        /* allow heart rate */
-        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[4]/android.widget.CheckBox");
+//         allow heart rate
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[2]/android.widget.CheckBox");
     }
 
     @Test
-    /* TC028 */
+//     TC028
     public void allowWeight() throws InterruptedException {
-        /* allow weight */
-        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[5]/android.widget.CheckBox");
+//         allow weight
+        this.responsePermissions("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.widget.ListView/android.view.View[4]/android.widget.CheckBox");
     }
 
     @Test

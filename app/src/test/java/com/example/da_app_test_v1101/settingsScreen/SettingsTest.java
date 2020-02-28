@@ -4,6 +4,7 @@ package com.example.da_app_test_v1101.settingsScreen;
  *
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
+ * version: v1.10.2
  * APK: https://github.com/ocariot/da-app/releases
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
@@ -194,7 +195,7 @@ public class SettingsTest {
         this.access_fitbit();
         driver.findElementByXPath(Xpath).click();
         driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView/android.view.View[1]/android.view.View[3]/android.widget.Button[2]").click();
-        Thread.sleep(7000);
+        Thread.sleep(10000);
         MobileElement alert = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/flAlertBackground");
         Assert.assertTrue(alert.isDisplayed());
         MobileElement alert_message = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle");

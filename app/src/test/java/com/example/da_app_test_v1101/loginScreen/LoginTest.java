@@ -113,7 +113,7 @@ public class LoginTest {
                   */
                 {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD, "invalidUsernameED", "12345", BuildConfig.CI_USERNAME_ED, BuildConfig.CI_PASSWORD},
                 {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD, "invalidUsernameHP", "12345", BuildConfig.CI_USERNAME_HP, BuildConfig.CI_PASSWORD},
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD, "invalidUsernameFM", "12345", BuildConfig.CI_USERNAME_FM, BuildConfig.CI_PASSWORD}
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM, "invalidUsernameFM", "12345", BuildConfig.CI_USERNAME_FM, BuildConfig.CI_PASSWORD}
         });
     }
 
@@ -125,6 +125,7 @@ public class LoginTest {
     @Test
     /* TC001 */
     public void validLogin() throws InterruptedException {
+        Thread.sleep(2000);
         /* Check the pilot */
         this.brazilianPilot();
         /* Username and password valid */
@@ -133,49 +134,62 @@ public class LoginTest {
         /* Check children screen */
         MobileElement toolbar = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/toolbar");
         Assert.assertEquals("Children", toolbar.findElement(By.className("android.widget.TextView")).getText());
+        Thread.sleep(3000);
     }
 
     @Test
     /* TC002 */
-    public void ciUsername() {
+    public void ciUsername() throws InterruptedException {
+        Thread.sleep(2000);
         /* Check the pilot */
         this.brazilianPilot();
         /* Case-insensitive username and password valid */
+        Thread.sleep(2000);
         User.login(driver, this.caseInsensitiveUsername, this.validPassword);
         /* Message alert */
+        Thread.sleep(5000);
         User.authenticationFailed(driver);
     }
 
     @Test
     /* TC003 */
-    public void ciPassword() {
+    public void ciPassword() throws InterruptedException {
+        Thread.sleep(2000);
         /* Check the pilot */
         this.brazilianPilot();
         /* Case-insensitive password and username valid */
+        Thread.sleep(2000);
         User.login(driver, this.validUsername, this.caseInsensitivePassword);
         /* Message alert */
+        Thread.sleep(5000);
         User.authenticationFailed(driver);
     }
 
     @Test
     /* TC004 */
-    public void invalidPassword() {
+    public void invalidPassword() throws InterruptedException {
+        Thread.sleep(2000);
         /* Check the pilot */
         this.brazilianPilot();
         /* valid username and invalid password */
+        Thread.sleep(2000);
         User.login(driver, this.validUsername, this.invalidPassword);
         /* Message alert */
+        Thread.sleep(5000);
         User.authenticationFailed(driver);
     }
 
     @Test
     /* TC005 */
-    public void invalidUsername() {
+    public void invalidUsername() throws InterruptedException {
+        Thread.sleep(2000);
         /* Check the pilot */
         this.brazilianPilot();
         /* Invalid username and valid password */
+        Thread.sleep(2000);
         User.login(driver, this.invalidUsername, this.validPassword);
         /* Message alert */
+        Thread.sleep(5000);
         User.authenticationFailed(driver);
     }
 
@@ -188,7 +202,9 @@ public class LoginTest {
         /* Check the pilot */
         this.brazilianPilot();
         /* username and password valid */
+        Thread.sleep(2000);
         User.login(driver, this.validUsername, this.validPassword);
+        Thread.sleep(2000);
         Assert.assertEquals("Connection error!", driver.findElementById("br.edu.uepb.nutes.ocariot:id/tvTitle").getText());
         /* Connects the internet from the device */
         driver.toggleWifi();
@@ -197,26 +213,30 @@ public class LoginTest {
 
     @Test
     /* TC007 */
-    public void userBRonEUpilot() {
+    public void userBRonEUpilot() throws InterruptedException {
         /* Choose europe pilot */
+        Thread.sleep(3000);
         MobileElement europe_radioButton = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/europe_radioButton");
         europe_radioButton.click();
         Assert.assertEquals("true", europe_radioButton.getAttribute("checked"));
         Assert.assertEquals("European pilot", driver.findElementById("br.edu.uepb.nutes.ocariot:id/locale_hint_text").getAttribute("text"));
         /* Brazilian user valid */
+        Thread.sleep(2000);
         User.login(driver, this.validUsername, this.validPassword);
+        Thread.sleep(4000);
         User.authenticationFailed(driver);
     }
 
-    @Test
-    /* TC008 */
-    public void emptyField() {
-
-    }
+//    @Test
+//    /* TC008 */
+//    public void emptyField() {
+//
+//    }
 
     @Test
     /* TC009 */
     public void passwordVisibility() throws InterruptedException {
+        Thread.sleep(4000);
         MobileElement password_visibility = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/text_input_password_toggle");
         Assert.assertEquals("false", password_visibility.getAttribute("checked"));
         password_visibility.click();
@@ -230,8 +250,9 @@ public class LoginTest {
 
     @Test
     /* TC010 */
-    public void iconAndimagesVisivility() {
+    public void iconAndimagesVisivility() throws InterruptedException {
         /* OCARIoT logo */
+        Thread.sleep(5000);
         Assert.assertTrue(driver.findElementById("br.edu.uepb.nutes.ocariot:id/logo").isDisplayed());
         /* Brazil icon */
         Assert.assertTrue(driver.findElementById("br.edu.uepb.nutes.ocariot:id/brazil_radioButton").isDisplayed());
