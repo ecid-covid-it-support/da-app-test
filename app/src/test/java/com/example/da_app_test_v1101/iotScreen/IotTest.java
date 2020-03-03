@@ -3,6 +3,7 @@ package com.example.da_app_test_v1101.iotScreen;
 /*******************************************************
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
+ * version: v1.10.2
  * APK: https://github.com/ocariot/da-app/releases
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
@@ -116,11 +117,11 @@ public class IotTest {
         List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
         children.get(0).click();
         Thread.sleep(2000);
-        /*if (!this.validUsername.equals(BuildConfig.USERNAME_FM)) {
-            *//* Do not currently use Fitbit *//*
+        if (!this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+//             Do not currently use Fitbit
             MobileElement do_not_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/do_not_login_fitbit_button");
             do_not_fitbit.click();
-        }*/
+        }
         /* Iot screen */
         MobileElement iot_navigation = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_iot");
         iot_navigation.click();
@@ -153,7 +154,6 @@ public class IotTest {
     /* TC042 */
     public void detailsWeight() throws InterruptedException {
         /*iotScreen();*/
-
         User.login(driver, this.validUsername, this.validPassword);
         Thread.sleep(3000);
         /* Children list */
@@ -161,6 +161,7 @@ public class IotTest {
         /* List children */
         List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
         children.get(0).click();
+
         Thread.sleep(2000);
         /* Sleep screen */
         MobileElement sleep_navigation = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/navigation_iot");
@@ -228,16 +229,15 @@ public class IotTest {
         List<MobileElement> alert_bluetooth_on = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth"));
         Assert.assertTrue(alert_bluetooth_on.get(0).isDisplayed());
         alert_bluetooth_on.get(0).click();
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         MobileElement allow_bluetooth = (MobileElement) driver.findElementById("android:id/button1");
         allow_bluetooth.click();
-        Thread.sleep(2000);
-        MobileElement allow_location = (MobileElement) driver.findElementById("com.android.packageinstaller:id/permission_allow_button");
+        Thread.sleep(4000);
+        MobileElement allow_location = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/alert_enable_location");
         allow_location.click();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         List<MobileElement> alert_bluetooth_off = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/alert_enable_bluetooth"));
         Assert.assertTrue(alert_bluetooth_off.isEmpty());
-        Thread.sleep(7000);
     }
 
     @Test
@@ -245,7 +245,7 @@ public class IotTest {
     public void graphVisibility() throws InterruptedException {
         this.iotScreen();
         /* Connecting POLAR */
-        Thread.sleep(15000);
+        Thread.sleep(20000);
         MobileElement hr_chart = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/hr_chart");
         hr_chart.isDisplayed();
     }

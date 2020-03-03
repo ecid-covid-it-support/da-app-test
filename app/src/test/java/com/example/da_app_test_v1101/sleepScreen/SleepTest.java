@@ -3,6 +3,8 @@ package com.example.da_app_test_v1101.sleepScreen;
 /**
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
+ * version: v1.10.2
+ *
  * APK: https://github.com/ocariot/da-app/releases
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
@@ -27,6 +29,7 @@ package com.example.da_app_test_v1101.sleepScreen;
  * restless: br.edu.uepb.nutes.ocariot:id/restless_duration_classic_tv
  * awake: br.edu.uepb.nutes.ocariot:id/awake_duration_classic_tv
  * awake + restless: br.edu.uepb.nutes.ocariot:id/restless_awake_duration_classic_tv
+ * there is no data: br.edu.uepb.nutes.ocariot:id/box_no_data
  * <p>
  * TEST CASES:
  * TC039: Verify is sleep efficiency is greater than or equal zero
@@ -95,8 +98,8 @@ public class SleepTest {
                     2° valid password
                   }*/
                 {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD}/*,
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}*/
+                {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM}
         });
     }
 
@@ -208,6 +211,8 @@ public class SleepTest {
     /* TC041 */
     public void thereIsNoData() throws InterruptedException {
         this.sleepScreen();
+        MobileElement no_data = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/box_no_data");
+        Assert.assertTrue(no_data.isDisplayed());
     }
 
     @After

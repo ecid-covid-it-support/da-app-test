@@ -5,6 +5,7 @@ package com.example.da_app_test_v1101.settingsScreen;
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
  * version: v1.10.2
+ *
  * APK: https://github.com/ocariot/da-app/releases
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
@@ -48,6 +49,8 @@ package com.example.da_app_test_v1101.settingsScreen;
  *
  ******************************************************/
 
+import android.os.Build;
+
 import com.example.da_app_test_v1101.BuildConfig;
 import com.example.da_app_test_v1101.Config;
 import com.example.da_app_test_v1101.User;
@@ -65,6 +68,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 import io.appium.java_client.MobileElement;
@@ -128,7 +132,7 @@ public class SettingsTest {
         /* List children */
         List<MobileElement> children = children_list.findElements(By.className("android.widget.RelativeLayout"));
         /* List status Fitbit */
-        children.get(0).click();
+        children.get(1).click();
         Thread.sleep(1300);
         MobileElement settings_action = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/action_settings");
         settings_action.click();
@@ -151,10 +155,11 @@ public class SettingsTest {
     /* TC049 */
     public void validLoginFitbit() throws InterruptedException {
         this.settingsScreen();
-        /*click provide Fitbit*/
-        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
-        provide_fitbit.click();
-        /*Redirect Fitbit account*/
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            driver.quit();
+        } else {
+            list(1);
+        }
         Thread.sleep(10000);
         User.login_fitbit(driver, this.fitbitUsername, this.fitbitPassword);
         Thread.sleep(7000);
@@ -165,10 +170,11 @@ public class SettingsTest {
     /* TC050 */
     public void invalidLoginFitbit() throws InterruptedException {
         this.settingsScreen();
-        /*click provide Fitbit*/
-        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
-        provide_fitbit.click();
-        /*Redirect Fitbit account*/
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            driver.quit();
+        } else {
+            list(1);
+        }
         Thread.sleep(10000);
         User.login_fitbit(driver, "invalid@gmail.com", "passwordfitbit");
         Thread.sleep(7000);
@@ -181,10 +187,12 @@ public class SettingsTest {
      */
     private void access_fitbit() throws InterruptedException {
         this.settingsScreen();
-        /* click provide Fitbit */
-        MobileElement provide_fitbit = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/fitbit_button");
-        provide_fitbit.click();
-        /* Redirect Fitbit account */
+        Thread.sleep(10000);
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            driver.quit();
+        } else {
+            list(1);
+        }
         Thread.sleep(10000);
         /* login valid fitbit */
         User.login_fitbit(driver, this.fitbitUsername, this.fitbitPassword);
@@ -247,6 +255,11 @@ public class SettingsTest {
     public void fitbitPage() throws InterruptedException {
         this.settingsScreen();
         /* Redirect Fitbit account */
+        if (this.validUsername.equals(BuildConfig.USERNAME_FM)) {
+            driver.quit();
+        } else {
+            list(1);
+        }
         Thread.sleep(10000);
         MobileElement page_fitbit = (MobileElement) driver.findElementById("com.android.chrome:id/compositor_view_holder");
         Assert.assertTrue(page_fitbit.isDisplayed());

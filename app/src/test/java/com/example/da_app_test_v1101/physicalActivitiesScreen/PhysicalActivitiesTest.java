@@ -3,6 +3,8 @@ package com.example.da_app_test_v1101.physicalActivitiesScreen;
 /**
  * OCARIoT DATA ACQUISITION APP
  * version: v1.10.1
+ * version: v1.10.2
+ *
  * APK: https://github.com/ocariot/da-app/releases
  * Dashboard: https://ocariot-nutes-dashboard.firebaseapp.com/
  * https://www.ocariot.com/
@@ -120,7 +122,7 @@ public class PhysicalActivitiesTest {
                   }*/
                 {BuildConfig.USERNAME_ED, BuildConfig.PASSWORD},
                 {BuildConfig.USERNAME_HP, BuildConfig.PASSWORD},
-                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD}
+                {BuildConfig.USERNAME_FM, BuildConfig.PASSWORD_FM}
         });
     }
 
@@ -155,16 +157,16 @@ public class PhysicalActivitiesTest {
         /* Takes data from the list of the first activity */
         List<MobileElement> duration_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/duration_tv"));
         List<MobileElement> calories_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/calories_tv"));
-        List<MobileElement> distance_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/distance_tv"));
+//        List<MobileElement> distance_list = driver.findElements(By.id("br.edu.uepb.nutes.ocariot:id/distance_tv"));
         /* data list greater than zero */
         this.isgreaterThanOrEqualsZero(duration_list.get(0).getText());
         this.isgreaterThanOrEqualsZero(calories_list.get(0).getText());
-        this.isgreaterThanOrEqualsZero(distance_list.get(0).getText());
+//        this.isgreaterThanOrEqualsZero(distance_list.get(0).getText());
 
         /* Saved to a string to use on the next screen */
         String duration = duration_list.get(0).getText();
         String calories = calories_list.get(0).getText();
-        String distance = distance_list.get(0).getText();
+//        String distance = distance_list.get(0).getText();
 
         /* Click on the first activity */
         MobileElement activities_list = (MobileElement) driver.findElementById("br.edu.uepb.nutes.ocariot:id/activities_list");
@@ -175,7 +177,7 @@ public class PhysicalActivitiesTest {
         /* Checks whether the data in the list matches the details */
         Assert.assertEquals(duration, stringNumber("br.edu.uepb.nutes.ocariot:id/activity_duration_tv"));
         Assert.assertEquals(calories, stringNumber("br.edu.uepb.nutes.ocariot:id/activity_calories_tv"));
-        Assert.assertEquals(distance.replaceAll("[\\D]", ""), stringNumber("br.edu.uepb.nutes.ocariot:id/activity_distance_tv"));
+//        Assert.assertEquals(distance.replaceAll("[\\D]", ""), stringNumber("br.edu.uepb.nutes.ocariot:id/activity_distance_tv"));
     }
 
     @Test
@@ -190,6 +192,8 @@ public class PhysicalActivitiesTest {
         activities.get(0).click();
 
         Thread.sleep(2000);
+
+        /* If's for input string: "--" */
 
         this.isgreaterThanOrEqualsZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_steps_tv").getText());
         this.isgreaterThanOrEqualsZero(driver.findElementById("br.edu.uepb.nutes.ocariot:id/activity_calories_tv").getText());
