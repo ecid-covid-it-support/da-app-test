@@ -1,4 +1,4 @@
-package com.example.da_app_test_v1101.childrenScreen;
+package com.example.da_app_test.childrenScreen;
 
 /******************************************************************
  * OCARIoT DATA ACQUISITION APP
@@ -41,8 +41,8 @@ package com.example.da_app_test_v1101.childrenScreen;
  ******************************************************************/
 
 import com.example.da_app_test_v1101.BuildConfig;
-import com.example.da_app_test_v1101.Config;
-import com.example.da_app_test_v1101.User;
+import com.example.da_app_test.Config;
+import com.example.da_app_test.User;
 
 import org.junit.After;
 import org.junit.Assert;

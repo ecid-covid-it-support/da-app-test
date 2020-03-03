@@ -1,4 +1,4 @@
-package com.example.da_app_test_v1101;
+package com.example.da_app_test;
 
 /**
  * OCARIoT DATA ACQUISITION APP
@@ -17,7 +17,6 @@ package com.example.da_app_test_v1101;
  *
  * */
 
-
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class Config {
@@ -33,7 +32,7 @@ public class Config {
         /* Windows */
 //        config.setCapability("app", "C:\\Users\\diego\\Downloads\\ocariot_da_1.9.4_debug.apk");
         /* Linux */
-        config.setCapability("app", "/home/diego/Downloads/app-debug.apk");
+        config.setCapability("app", "/home/diego/Downloads/ocariot_da_v1.11.0-debug.apk");
         /*URL remoteUrl = new URL(url);*/
     }
 }

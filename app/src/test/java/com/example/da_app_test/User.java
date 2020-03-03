@@ -1,4 +1,4 @@
-package com.example.da_app_test_v1101;
+package com.example.da_app_test;
 
 /**
  * OCARIoT DATA ACQUISITION APP

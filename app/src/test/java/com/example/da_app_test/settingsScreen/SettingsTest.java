@@ -1,4 +1,4 @@
-package com.example.da_app_test_v1101.settingsScreen;
+package com.example.da_app_test.settingsScreen;
 
 /******************************************************
  *
@@ -52,8 +52,8 @@ package com.example.da_app_test_v1101.settingsScreen;
 import android.os.Build;
 
 import com.example.da_app_test_v1101.BuildConfig;
-import com.example.da_app_test_v1101.Config;
-import com.example.da_app_test_v1101.User;
+import com.example.da_app_test.Config;
+import com.example.da_app_test.User;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -68,7 +68,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 import io.appium.java_client.MobileElement;
